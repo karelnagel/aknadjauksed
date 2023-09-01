@@ -1,7 +1,9 @@
 import React from "react";
 
 function App() {
-  return <form action="bg-blue-500">terer adsfasd fas fdas f</form>;
+  return <div>
+    
+  </div>
 }
 
 export default App;
