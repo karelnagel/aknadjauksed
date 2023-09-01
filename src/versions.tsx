@@ -23,22 +23,22 @@ export const UheOsaline = () => {
   const scale = HEIGHT / height;
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} onSubmit={(e) => e.preventDefault()}>
       <Panel name="window-opening" width={width * scale} height={HEIGHT} />
       <input
         name="width"
         placeholder="Laius"
         type="number"
-        value={width}
-        onInput={(e) => setWidth(parseInt(e.currentTarget.value))}
+        defaultValue={width}
+        onBlur={(e) => setWidth(parseInt(e.currentTarget.value))}
         style={{ position: "absolute", width: 60, top: -20, left: "50%", transform: "translate(-50%, -50%)" }}
       />
       <input
         name="height"
         placeholder="Korgus"
         type="number"
-        value={height}
-        onInput={(e) => setHeight(parseInt(e.currentTarget.value))}
+        defaultValue={height}
+        onBlur={(e) => setHeight(parseInt(e.currentTarget.value))}
         style={{ position: "absolute", width: 60, right: -120, top: "50%", transform: "translate(-50%, -50%)" }}
       />
     </div>
