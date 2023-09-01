@@ -23,7 +23,7 @@ export const UheOsaline = () => {
   const scale = HEIGHT / height;
 
   return (
-    <div style={{ position: "relative" }} onSubmit={(e) => e.preventDefault()}>
+    <div style={{ position: "relative" }}>
       <Panel name="window-opening" width={width * scale} height={HEIGHT} />
       <input
         name="width"
