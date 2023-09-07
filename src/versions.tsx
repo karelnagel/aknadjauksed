@@ -1,19 +1,82 @@
-import { useState } from "react";
-import { useInputValue, useStore, HEIGHT } from "./store";
+import { CSSProperties, ReactNode, useState } from "react";
+import { useInputValue, HEIGHT } from "./store";
 
 type Opening = "Vali" | "Mitteavatav" | "Vasakult" | "Paremalt" | "Ülevalt" | "Vasakult ja ülevalt" | "Paremalt ja ülevalt";
-
-const Panel = ({ name, width, height }: { name: string; width: number; height: number }) => {
-  const color = useStore((state) => state.color);
+const colors = {
+  Valge: "white",
+  Pruun: "#a5802a",
+  Mahagon: "#C04000",
+  Pähkel: "#a68b6e",
+  "Tume tamm": "#855e42",
+  "Kuldne tamm": "#8B4513",
+  "Hele tamm": "#deb887",
+  Bergkiefer: "#DEB887",
+  "Hall-RAL 7038": "#B4B8B0",
+  "Hall-RAL 7016": "#373F43",
+  "Hall-RAL 7035": "#CBD0CC",
+  "Hall-RAL 7001": "#8F999F",
+  "Punane-RAL 3005": "#5E2028",
+  "Punane-RAL 3004": "#701F29",
+  "Punane-RAL 3003": "#8D1D2C",
+  "Punane-RAL 3000": "#AB2524",
+  "Roheline-RAL 6004": "#0E4243",
+  "Roheline-RAL 6009": "#26392F",
+  "Roheline-RAL 6005": "#0F4336",
+  "Roheline-RAL 6001": "#28713E",
+  "Sinine-RAL 5013": "#232D53",
+  "Sinine-RAL 5011": "#232C3F",
+  "Sinine-RAL 5007": "#41678D",
+  "Sinine-RAL 5005": "#154889",
+  "Kollane-RAL 1018": "#F3E03B",
+  "Valge-RAL 9001": "#EFEBDC",
+  "Valge-RAL 9010": "#F7F9EF",
+  "Valge-RAL 9018": "#CFD3CD",
+};
+const Panel = ({ name, width, height, children }: { name: string; width: number; height: number; children: ReactNode }) => {
   const opening = useInputValue(name) as Opening | undefined;
+  const color = useInputValue("color-outside");
+
   return (
-    <div style={{ border: `6px solid ${color}`, width, height }}>
+    <div style={{ border: `6px solid ${colors[color as keyof typeof colors] || color || "white"}`, width, height, position: "relative" }}>
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
         {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
         {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
         {opening?.toLocaleLowerCase().includes("ülevalt") && <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />}
       </svg>
+      {children}
     </div>
+  );
+};
+
+const Input = ({
+  value,
+  setValue,
+  label,
+  name,
+  style,
+}: {
+  value: number;
+  setValue: (n: number) => void;
+  label: string;
+  name: string;
+  style: CSSProperties;
+}) => {
+  return (
+    <label
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        position: "absolute",
+        width: 60,
+        transform: "translate(-50%, -50%)",
+        gap: 3,
+        ...style,
+      }}
+    >
+      {/* <span>{label}</span> */}
+      <input name={name} type="number" defaultValue={value} onChange={(e) => setValue(parseInt(e.currentTarget.value))} style={{ width: "100%" }} />
+    </label>
   );
 };
 
@@ -23,33 +86,55 @@ export const UheOsaline = () => {
   const scale = HEIGHT / height;
 
   return (
-    <div style={{ position: "relative" }}>
-      <Panel name="window-opening" width={width * scale} height={HEIGHT} />
-      <input
-        name="width"
-        placeholder="Laius"
-        type="number"
-        defaultValue={width}
-        onBlur={(e) => setWidth(parseInt(e.currentTarget.value))}
-        style={{ position: "absolute", width: 60, top: -20, left: "50%", transform: "translate(-50%, -50%)" }}
-      />
-      <input
-        name="height"
-        placeholder="Korgus"
-        type="number"
-        defaultValue={height}
-        onBlur={(e) => setHeight(parseInt(e.currentTarget.value))}
-        style={{ position: "absolute", width: 60, right: -120, top: "50%", transform: "translate(-50%, -50%)" }}
-      />
+    <div style={{}}>
+      <Panel name="window-opening" width={width * scale} height={HEIGHT}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+      </Panel>
     </div>
   );
 };
 
 export const KaheOsaline = () => {
-  return <div></div>;
+  const [width, setWidth] = useState(100);
+  const [width2, setWidth2] = useState(100);
+  const [height, setHeight] = useState(100);
+  const scale = HEIGHT / height;
+
+  return (
+    <div style={{ position: "relative", display: "flex" }}>
+      <Panel name="window-opening" width={width * scale} height={HEIGHT}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="window-opening2" width={width2 * scale} height={HEIGHT}>
+        <Input name="width2" value={width2} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
 };
+
 export const KolmeOsaline = () => {
-  return <div></div>;
+  const [width, setWidth] = useState(100);
+  const [width2, setWidth2] = useState(100);
+  const [width3, setWidth3] = useState(100);
+  const [height, setHeight] = useState(100);
+  const scale = HEIGHT / height;
+
+  return (
+    <div style={{ position: "relative", display: "flex" }}>
+      <Panel name="window-opening" width={width * scale} height={HEIGHT}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="window-opening2" width={width2 * scale} height={HEIGHT}>
+        <Input name="width2" value={width2} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="window-opening3" width={width3 * scale} height={HEIGHT}>
+        <Input name="width2" value={width3} label="Laius" setValue={setWidth3} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
 };
 
 export const AknadMolemalPool = () => {

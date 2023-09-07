@@ -1,10 +1,7 @@
 import { UheOsaline, KaheOsaline, KolmeOsaline, AknadMolemalPool, RoduPoolKlaas, Rodu, UksPlussKaks, VasakulAknaga, ParemalAknaga } from "./versions";
-import { HEIGHT, Variant, useInputValue, useStore } from "./store";
+import { HEIGHT, Variant } from "./store";
 
 export default function App({ variant }: { variant: Variant }) {
-  const set = useStore((state) => state.set);
-  useInputValue("color-outside", (v) => set({ color: v }));
-
   return (
     <div
       style={{
@@ -15,6 +12,7 @@ export default function App({ variant }: { variant: Variant }) {
         alignItems: "center",
         justifyContent: "center",
         padding: "60px 0",
+        overflow: "hidden",
       }}
     >
       {variant === "uhe_osaline" && <UheOsaline />}

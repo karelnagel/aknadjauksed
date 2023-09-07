@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { create } from "zustand";
-export const HEIGHT = 300;
+
+export const HEIGHT = 350;
 export type Language = "et" | "ru";
 export type Variant =
   | "uhe_osaline"
@@ -15,14 +16,12 @@ export type Variant =
 
 type Store = {
   language: Language;
-  color: string;
   set: (partial: Store | Partial<Store> | ((state: Store) => Store | Partial<Store>), replace?: boolean | undefined) => void;
 };
 
 export const useStore = create<Store>((set) => ({
   set,
   language: "et",
-  color: "#FFFFFF",
 }));
 
 export const useInputValue = (name: string, onChange?: (v: string) => void) => {
