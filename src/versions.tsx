@@ -9,8 +9,8 @@ const Panel = ({ name, width, height }: { name: string; width: number; height: n
   return (
     <div style={{ border: `6px solid ${color}`, width, height }}>
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
-        {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
-        {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
+        {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
+        {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
         {opening?.toLocaleLowerCase().includes("ülevalt") && <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />}
       </svg>
     </div>
