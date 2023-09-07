@@ -1,9 +1,8 @@
 import { UheOsaline, KaheOsaline, KolmeOsaline, AknadMolemalPool, RoduPoolKlaas, Rodu, UksPlussKaks, VasakulAknaga, ParemalAknaga } from "./versions";
-import { HEIGHT, useInputValue, useStore } from "./store";
+import { HEIGHT, Variant, useInputValue, useStore } from "./store";
 
-export default function App() {
+export default function App({ variant }: { variant: Variant }) {
   const set = useStore((state) => state.set);
-  const variant = useStore((state) => state.variant);
   useInputValue("color-outside", (v) => set({ color: v }));
 
   return (

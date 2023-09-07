@@ -15,7 +15,6 @@ export type Variant =
 
 type Store = {
   language: Language;
-  variant: Variant;
   color: string;
   set: (partial: Store | Partial<Store> | ((state: Store) => Store | Partial<Store>), replace?: boolean | undefined) => void;
 };
@@ -23,7 +22,6 @@ type Store = {
 export const useStore = create<Store>((set) => ({
   set,
   language: "et",
-  variant: "uhe_osaline",
   color: "#FFFFFF",
 }));
 
