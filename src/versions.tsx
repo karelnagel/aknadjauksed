@@ -32,12 +32,13 @@ const colors = {
   "Valge-RAL 9010": "#F7F9EF",
   "Valge-RAL 9018": "#CFD3CD",
 };
-const Panel = ({ name, width, height, children }: { name: string; width: number; height: number; children: ReactNode }) => {
+const Panel = ({ name, width, height, children, filled }: { name: string; width: number; height: number; children: ReactNode; filled?: boolean }) => {
   const opening = useInputValue(name) as Opening | undefined;
-  const color = useInputValue("color-outside");
+  const colorOutside = useInputValue("color-outside");
+  const color = colors[colorOutside as keyof typeof colors] || colorOutside || "white";
 
   return (
-    <div style={{ border: `6px solid ${colors[color as keyof typeof colors] || color || "white"}`, width, height, position: "relative" }}>
+    <div style={{ border: `6px solid ${color}`, background: filled ? color : undefined, width, height, position: "relative" }}>
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
         {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
         {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
@@ -177,7 +178,21 @@ export const AknadMolemalPool = () => {
 };
 
 export const RoduPoolKlaas = () => {
-  return <div></div>;
+  const [width, setWidth] = useState(1000);
+  const [height1, setHeight1] = useState(1000);
+  const [height2, setHeight2] = useState(1000);
+  const scale = HEIGHT / (height1 + height2);
+  return (
+    <div style={{ position: "relative" }}>
+      <Panel name="window-opening" width={width * scale} height={height1 * scale}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height1} label="Korgus" setValue={setHeight1} style={{ right: -120, top: "50%" }} />
+      </Panel>
+      <Panel filled name="window-opening2" width={width * scale} height={height2 * scale}>
+        <Input name="height2" value={height2} label="Korgus" setValue={setHeight2} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
 };
 export const Rodu = () => {
   return <div></div>;
