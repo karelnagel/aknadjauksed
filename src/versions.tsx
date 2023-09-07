@@ -54,12 +54,16 @@ const Input = ({
   label,
   name,
   style,
+  min = 0,
+  max = 10000,
 }: {
   value: number;
   setValue: (n: number) => void;
   label: string;
   name: string;
   style: CSSProperties;
+  min?: number;
+  max?: number;
 }) => {
   return (
     <label
@@ -69,20 +73,28 @@ const Input = ({
         alignItems: "center",
         position: "absolute",
         width: 60,
-        transform: "translate(-50%, -50%)",
+        transform: `translate(${style.left || style.right ? "-50%" : "0"}, ${style.top || style.bottom ? "-50%" : "0"})`,
         gap: 3,
         ...style,
       }}
     >
       {/* <span>{label}</span> */}
-      <input name={name} type="number" defaultValue={value} onChange={(e) => setValue(parseInt(e.currentTarget.value))} style={{ width: "100%" }} />
+      <input
+        name={name}
+        min={min}
+        max={max}
+        type="number"
+        defaultValue={value}
+        onChange={(e) => setValue(Math.max(min || 0, Math.min(max || Infinity, Number(e.target.value))))}
+        style={{ width: "100%" }}
+      />
     </label>
   );
 };
 
 export const UheOsaline = () => {
-  const [width, setWidth] = useState(100);
-  const [height, setHeight] = useState(100);
+  const [width, setWidth] = useState(1000);
+  const [height, setHeight] = useState(1000);
   const scale = HEIGHT / height;
 
   return (
@@ -96,9 +108,9 @@ export const UheOsaline = () => {
 };
 
 export const KaheOsaline = () => {
-  const [width, setWidth] = useState(100);
-  const [width2, setWidth2] = useState(100);
-  const [height, setHeight] = useState(100);
+  const [width, setWidth] = useState(1000);
+  const [width2, setWidth2] = useState(1000);
+  const [height, setHeight] = useState(1000);
   const scale = HEIGHT / height;
 
   return (
@@ -115,10 +127,10 @@ export const KaheOsaline = () => {
 };
 
 export const KolmeOsaline = () => {
-  const [width, setWidth] = useState(100);
-  const [width2, setWidth2] = useState(100);
-  const [width3, setWidth3] = useState(100);
-  const [height, setHeight] = useState(100);
+  const [width, setWidth] = useState(1000);
+  const [width2, setWidth2] = useState(1000);
+  const [width3, setWidth3] = useState(1000);
+  const [height, setHeight] = useState(1000);
   const scale = HEIGHT / height;
 
   return (
@@ -138,8 +150,32 @@ export const KolmeOsaline = () => {
 };
 
 export const AknadMolemalPool = () => {
-  return <div></div>;
+  const [width1, setWidth1] = useState(1000);
+  const [width2, setWidth2] = useState(1000);
+  const [width3, setWidth3] = useState(1000);
+  const [height1, setHeight1] = useState(400);
+  const [height2, setHeight2] = useState(1000);
+  const [height3, setHeight3] = useState(400);
+  const scale = HEIGHT / height2;
+
+  return (
+    <div style={{ position: "relative", display: "flex" }}>
+      <Panel name="window-opening" width={width1 * scale} height={height1 * scale}>
+        <Input name="width" value={width1} label="Laius" setValue={setWidth1} style={{ top: -32, left: "50%" }} />
+        <Input name="height" max={height2} value={height1} label="Korgus" setValue={setHeight1} style={{ left: -50, top: "50%" }} />
+      </Panel>
+      <Panel name="window-opening2" width={width2 * scale} height={HEIGHT}>
+        <Input name="width2" value={width2} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
+        <Input name="width2" value={height2} label="Height" setValue={setHeight2} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="window-opening3" width={width3 * scale} height={height3 * scale}>
+        <Input name="width2" value={width3} label="Laius" setValue={setWidth3} style={{ top: -32, left: "50%" }} />
+        <Input name="height3" max={height2} value={height3} label="Korgus" setValue={setHeight3} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
 };
+
 export const RoduPoolKlaas = () => {
   return <div></div>;
 };
