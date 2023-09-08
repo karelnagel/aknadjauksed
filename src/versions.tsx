@@ -188,12 +188,12 @@ export const KolmeOsaline = () => {
 };
 
 export const AknadMolemalPool = () => {
-  const [widthLeft, setWidthLeft] = useState(500);
+  const [widthLeft, setWidthLeft] = useState(1000);
   const [doorWidth, setDoorWidth] = useState(1000);
-  const [widthRight, setWidthRight] = useState(500);
-  const [heightLeft, setHeightLeft] = useState(500);
-  const [heightDoor, setHeightDoor] = useState(1000);
-  const [heightRight, setHeightRight] = useState(500);
+  const [widthRight, setWidthRight] = useState(1000);
+  const [heightLeft, setHeightLeft] = useState(1000);
+  const [heightDoor, setHeightDoor] = useState(2000);
+  const [heightRight, setHeightRight] = useState(1000);
   const scale = getScale([heightDoor], [widthLeft, doorWidth, widthRight]);
 
   return (
@@ -204,7 +204,7 @@ export const AknadMolemalPool = () => {
       </Panel>
       <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
         <Input name="width-door" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="height-door" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: -32, left: "50%" }} />
+        <Input name="height-door" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
       </Panel>
       <Panel name="opening-right" width={widthRight} height={heightRight} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
