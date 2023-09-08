@@ -127,7 +127,7 @@ const Input = ({
 const useScale = (heights: number[], widths: number[]) => {
   const [maxWidth, setMaxWidth] = useState(Math.min(window.innerWidth - 20, WIDTH));
   useEffect(() => {
-    const resize = () => setMaxWidth(Math.min(window.innerWidth - 20, WIDTH));
+    const resize = () => setMaxWidth(Math.min(window.innerWidth - 120, WIDTH));
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
