@@ -32,7 +32,7 @@ const colors = {
   "Valge-RAL 9010": "#F7F9EF",
   "Valge-RAL 9018": "#CFD3CD",
 };
-const WIDTH = 800;
+const WIDTH = 400;
 const Panel = ({
   name,
   width,
