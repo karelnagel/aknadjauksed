@@ -194,7 +194,7 @@ export const AknadMolemalPool = () => {
   const [heightLeft, setHeightLeft] = useState(1000);
   const [heightDoor, setHeightDoor] = useState(2000);
   const [heightRight, setHeightRight] = useState(1000);
-  const scale = getScale([heightDoor], [widthLeft, doorWidth, widthRight]);
+  const scale = getScale([Math.max(heightDoor, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
@@ -203,8 +203,8 @@ export const AknadMolemalPool = () => {
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ left: -50, top: "50%" }} />
       </Panel>
       <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
-        <Input name="width-door" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="height-door" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
+        <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
       </Panel>
       <Panel name="opening-right" width={widthRight} height={heightRight} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
@@ -228,11 +228,11 @@ export const RoduPoolKlaas = () => {
   const scale = getScale([heightTop, heightBottom], [width]);
   return (
     <div style={{ position: "relative" }}>
-      <Panel name="opening-top" width={width} height={heightTop} scale={scale}>
+      <Panel name="window-opening" width={width} height={heightTop} scale={scale}>
         <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Panel filled name="opening-bottom" width={width} height={heightBottom} scale={scale}>
+      <Panel filled name="" width={width} height={heightBottom} scale={scale}>
         <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
       </Panel>
     </div>
