@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, useState } from "react";
+import { CSSProperties, ReactNode, useEffect, useState } from "react";
 import { useInputValue, HEIGHT } from "./store";
 
 type Opening = "Vali" | "Mitteavatav" | "Vasakult" | "Paremalt" | "Ülevalt" | "Vasakult ja ülevalt" | "Paremalt ja ülevalt";
@@ -32,7 +32,7 @@ const colors = {
   "Valge-RAL 9010": "#F7F9EF",
   "Valge-RAL 9018": "#CFD3CD",
 };
-const WIDTH = 400;
+const WIDTH = 800;
 const Panel = ({
   name,
   width,
@@ -124,7 +124,13 @@ const Input = ({
   );
 };
 
-const getScale = (heights: number[], widths: number[]) => {
+const useScale = (heights: number[], widths: number[]) => {
+  const [maxWidth, setMaxWidth] = useState(Math.min(window.innerWidth - 20, WIDTH));
+  useEffect(() => {
+    const resize = () => setMaxWidth(Math.min(window.innerWidth - 20, WIDTH));
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
   const height = heights.reduce((a, b) => a + b, 0);
   const width = widths.reduce((a, b) => a + b, 0);
   return Math.min(HEIGHT / height, WIDTH / width);
@@ -133,7 +139,7 @@ const getScale = (heights: number[], widths: number[]) => {
 export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) => {
   const [width, setWidth] = useState(w);
   const [height, setHeight] = useState(h);
-  const scale = getScale([height], [width]);
+  const scale = useScale([height], [width]);
 
   return (
     <div style={{}}>
@@ -149,7 +155,7 @@ export const KaheOsaline = () => {
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidth2] = useState(1000);
   const [height, setHeight] = useState(1000);
-  const scale = getScale([height], [widthLeft, widthRight]);
+  const scale = useScale([height], [widthLeft, widthRight]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
@@ -169,7 +175,7 @@ export const KolmeOsaline = () => {
   const [widthCenter, setWidthCenter] = useState(1000);
   const [widthRight, setWidthRight] = useState(500);
   const [height, setHeight] = useState(1000);
-  const scale = getScale([height], [widthLeft, widthCenter, widthRight]);
+  const scale = useScale([height], [widthLeft, widthCenter, widthRight]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
@@ -194,7 +200,7 @@ export const AknadMolemalPool = () => {
   const [heightLeft, setHeightLeft] = useState(1000);
   const [heightDoor, setHeightDoor] = useState(2000);
   const [heightRight, setHeightRight] = useState(1000);
-  const scale = getScale([Math.max(heightDoor, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
+  const scale = useScale([Math.max(heightDoor, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
@@ -225,7 +231,7 @@ export const RoduPoolKlaas = () => {
   const [width, setWidth] = useState(1000);
   const [heightTop, setHeightTop] = useState(1000);
   const [heightBottom, setHeightBottom] = useState(1000);
-  const scale = getScale([heightTop, heightBottom], [width]);
+  const scale = useScale([heightTop, heightBottom], [width]);
   return (
     <div style={{ position: "relative" }}>
       <Panel name="window-opening" width={width} height={heightTop} scale={scale}>
@@ -247,7 +253,7 @@ export const UksPlussKaks = () => {
   const [heightBottom, setHeightBottom] = useState(2000);
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidthRight] = useState(1000);
-  const scale = getScale([heightTop, heightBottom], [widthLeft, widthRight]);
+  const scale = useScale([heightTop, heightBottom], [widthLeft, widthRight]);
   return (
     <div style={{}}>
       <Panel name="opening-top" width={widthLeft + widthRight} height={heightTop} scale={scale}>
@@ -271,7 +277,7 @@ export const VasakulAknaga = () => {
   const [windowHeight, setWindowHeight] = useState(1000);
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(2000);
-  const scale = getScale([doorHeight], [windowWidth, doorWidth]);
+  const scale = useScale([doorHeight], [windowWidth, doorWidth]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
@@ -299,7 +305,7 @@ export const ParemalAknaga = () => {
   const [doorHeight, setDoorHeight] = useState(2000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
-  const scale = getScale([doorHeight], [windowWidth, doorWidth]);
+  const scale = useScale([doorHeight], [windowWidth, doorWidth]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
