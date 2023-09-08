@@ -40,7 +40,7 @@ const Panel = ({ name, width, height, children, filled }: { name: string; width:
   return (
     <div
       style={{
-        outline: `6px solid ${color}`,
+        border: `6px solid ${color}`,
         background: filled ? color : undefined,
         width,
         height,
@@ -102,16 +102,16 @@ const Input = ({
         max={max}
         type="number"
         defaultValue={value}
-        onChange={(e) => delayedSetValue(Math.max(min || 0, Math.min(max || Infinity, Number(e.target.value))))}
+        onChange={(e) => delayedSetValue(Math.max(min || 0, Math.min(max, Number(e.target.value))))}
         style={{ width: "100%" }}
       />
     </label>
   );
 };
 
-export const UheOsaline = () => {
-  const [width, setWidth] = useState(1000);
-  const [height, setHeight] = useState(1000);
+export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) => {
+  const [width, setWidth] = useState(w);
+  const [height, setHeight] = useState(h);
   const scale = HEIGHT / height;
 
   return (
@@ -144,9 +144,9 @@ export const KaheOsaline = () => {
 };
 
 export const KolmeOsaline = () => {
-  const [widthLeft, setWidthLeft] = useState(1000);
+  const [widthLeft, setWidthLeft] = useState(500);
   const [widthCenter, setWidthCenter] = useState(1000);
-  const [widthRight, setWidthRight] = useState(1000);
+  const [widthRight, setWidthRight] = useState(500);
   const [height, setHeight] = useState(1000);
   const scale = HEIGHT / height;
 
@@ -167,12 +167,12 @@ export const KolmeOsaline = () => {
 };
 
 export const AknadMolemalPool = () => {
-  const [widthLeft, setWidthLeft] = useState(1000);
+  const [widthLeft, setWidthLeft] = useState(500);
   const [doorWidth, setDoorWidth] = useState(1000);
-  const [widthRight, setWidthRight] = useState(1000);
-  const [heightLeft, setHeightLeft] = useState(400);
+  const [widthRight, setWidthRight] = useState(500);
+  const [heightLeft, setHeightLeft] = useState(500);
   const [heightDoor, setHeightDoor] = useState(1000);
-  const [heightRight, setHeightRight] = useState(400);
+  const [heightRight, setHeightRight] = useState(500);
   const scale = HEIGHT / heightDoor;
 
   return (
@@ -201,7 +201,7 @@ export const AknadMolemalPool = () => {
 };
 
 export const RoduPoolKlaas = () => {
-  const [width, setWidth] = useState(100);
+  const [width, setWidth] = useState(1000);
   const [heightTop, setHeightTop] = useState(1000);
   const [heightBottom, setHeightBottom] = useState(1000);
   const scale = HEIGHT / (heightTop + heightBottom);
@@ -218,12 +218,12 @@ export const RoduPoolKlaas = () => {
   );
 };
 export const Rodu = () => {
-  return <UheOsaline />;
+  return <UheOsaline h={2000} />;
 };
 
 export const UksPlussKaks = () => {
   const [heightTop, setHeightTop] = useState(400);
-  const [heightBottom, setHeightBottom] = useState(1000);
+  const [heightBottom, setHeightBottom] = useState(2000);
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidthRight] = useState(1000);
   const scale = HEIGHT / (heightTop + heightBottom);
@@ -247,7 +247,7 @@ export const UksPlussKaks = () => {
 
 export const VasakulAknaga = () => {
   const [windowWidth, setWindowWidth] = useState(1000);
-  const [windowHeight, setWindowHeight] = useState(400);
+  const [windowHeight, setWindowHeight] = useState(500);
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(1000);
   const scale = HEIGHT / doorHeight;
@@ -277,7 +277,7 @@ export const ParemalAknaga = () => {
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(1000);
   const [windowWidth, setWindowWidth] = useState(1000);
-  const [windowHeight, setWindowHeight] = useState(400);
+  const [windowHeight, setWindowHeight] = useState(500);
   const scale = HEIGHT / doorHeight;
 
   return (
