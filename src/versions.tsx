@@ -38,7 +38,16 @@ const Panel = ({ name, width, height, children, filled }: { name: string; width:
   const color = colors[colorOutside as keyof typeof colors] || colorOutside || "white";
 
   return (
-    <div style={{ outline: `6px solid ${color}`, background: filled ? color : undefined, width, height, position: "relative" }}>
+    <div
+      style={{
+        outline: `6px solid ${color}`,
+        background: filled ? color : undefined,
+        width,
+        height,
+        position: "relative",
+        transitionDuration: "1s",
+      }}
+    >
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
         {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
         {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
@@ -66,6 +75,13 @@ const Input = ({
   min?: number;
   max?: number;
 }) => {
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+
+  const delayedSetValue = (val: number) => {
+    if (timeoutId) clearTimeout(timeoutId);
+    setTimeoutId(setTimeout(() => setValue(val), 500));
+  };
+
   return (
     <label
       style={{
@@ -86,7 +102,7 @@ const Input = ({
         max={max}
         type="number"
         defaultValue={value}
-        onChange={(e) => setValue(Math.max(min || 0, Math.min(max || Infinity, Number(e.target.value))))}
+        onChange={(e) => delayedSetValue(Math.max(min || 0, Math.min(max || Infinity, Number(e.target.value))))}
         style={{ width: "100%" }}
       />
     </label>
