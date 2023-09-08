@@ -288,7 +288,7 @@ export const VasakulAknaga = () => {
       </Panel>
       <Panel name="window-right" width={doorWidth} height={doorHeight} scale={scale}>
         <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="door-height" value={doorHeight} label="Height" setValue={setDoorHeight} style={{ right: -50, top: "50%" }} />
+        <Input name="door-height" value={doorHeight} label="Height" setValue={setDoorHeight} style={{ right: -110, top: "50%" }} />
       </Panel>
     </div>
   );
