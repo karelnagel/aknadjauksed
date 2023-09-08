@@ -133,7 +133,7 @@ const useScale = (heights: number[], widths: number[]) => {
   }, []);
   const height = heights.reduce((a, b) => a + b, 0);
   const width = widths.reduce((a, b) => a + b, 0);
-  return Math.min(HEIGHT / height, WIDTH / width);
+  return Math.min(HEIGHT / height, maxWidth / width);
 };
 
 export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) => {
