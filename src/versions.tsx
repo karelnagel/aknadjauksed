@@ -268,9 +268,9 @@ export const UksPlussKaks = () => {
 
 export const VasakulAknaga = () => {
   const [windowWidth, setWindowWidth] = useState(1000);
-  const [windowHeight, setWindowHeight] = useState(500);
+  const [windowHeight, setWindowHeight] = useState(1000);
   const [doorWidth, setDoorWidth] = useState(1000);
-  const [doorHeight, setDoorHeight] = useState(1000);
+  const [doorHeight, setDoorHeight] = useState(2000);
   const scale = getScale([doorHeight], [windowWidth, doorWidth]);
 
   return (
@@ -296,9 +296,9 @@ export const VasakulAknaga = () => {
 
 export const ParemalAknaga = () => {
   const [doorWidth, setDoorWidth] = useState(1000);
-  const [doorHeight, setDoorHeight] = useState(1000);
+  const [doorHeight, setDoorHeight] = useState(2000);
   const [windowWidth, setWindowWidth] = useState(1000);
-  const [windowHeight, setWindowHeight] = useState(500);
+  const [windowHeight, setWindowHeight] = useState(1000);
   const scale = getScale([doorHeight], [windowWidth, doorWidth]);
 
   return (
