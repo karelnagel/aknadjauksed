@@ -5,13 +5,12 @@ export default function App({ variant }: { variant: Variant }) {
   return (
     <div
       style={{
-        height: HEIGHT,
+        height: HEIGHT + 120,
         width: "100%",
         background: "gray",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px 0",
         overflow: "hidden",
       }}
     >
