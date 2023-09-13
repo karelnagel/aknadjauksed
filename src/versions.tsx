@@ -327,3 +327,68 @@ export const ParemalAknaga = () => {
     </div>
   );
 };
+
+export const NeljaOsaline = () => {
+  const [widthLeft, setWidthLeft] = useState(500);
+  const [widthCenter, setWidthCenter] = useState(500);
+  const [widthRight, setWidthRight] = useState(500);
+  const [heightTop, setHeightTop] = useState(500);
+  const [heightBottom, setHeightBottom] = useState(500);
+  const scale = useScale([heightTop, heightBottom], [widthLeft, widthCenter, widthRight]);
+
+  return (
+    <div style={{ position: "relative", display: "flex" }}>
+      <Panel name="opening-left" width={widthLeft} height={heightTop} scale={scale}>
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
+        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ left: -50, top: "50%" }} />
+      </Panel>
+      <Panel name="opening-center" width={widthCenter} height={heightTop} scale={scale}>
+        <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="opening-right" width={widthRight} height={heightTop} scale={scale}>
+        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="opening-bottom" width={widthRight} height={heightBottom} scale={scale}>
+        <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
+};
+
+export const RoduPoolKlaasAknadMolemalPool = () => {
+  const [width, setWidth] = useState(1000);
+  const [heightTop, setHeightTop] = useState(1000);
+  const [heightBottom, setHeightBottom] = useState(1000);
+  const scale = useScale([heightTop, heightBottom], [width]);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <Panel name="window-opening" width={width} height={heightTop} scale={scale}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
+      </Panel>
+      <Panel filled name="" width={width} height={heightBottom} scale={scale}>
+        <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
+};
+
+export const RoduPoolKlaasAknaga = () => {
+  const [width, setWidth] = useState(1000);
+  const [heightTop, setHeightTop] = useState(1000);
+  const [heightBottom, setHeightBottom] = useState(1000);
+  const scale = useScale([heightTop, heightBottom], [width]);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <Panel name="window-opening" width={width} height={heightTop} scale={scale}>
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
+      </Panel>
+      <Panel filled name="" width={width} height={heightBottom} scale={scale}>
+        <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
+      </Panel>
+    </div>
+  );
+};

@@ -7,12 +7,17 @@ export type Variant =
   | "uhe_osaline"
   | "kahe_osaline"
   | "kolme_osaline"
+  | "nelja_osaline"
   | "aknad_molemal_pool"
   | "rodu_pool_klaas"
+  | "roduuks_poolklaas_aknad_molemal_pool"
+  | "roduuks_taisklaas_aknad_molemal_pool"
+  | "roduuks_poolklaas_aknaga"
+  | "roduuks_taisklaas_aknaga"
+  | "terassiuks_valisuks_poolklaas"
+  | "terassiuks_valisuks_taisklaas"
   | "rodu"
-  | "uks_pluss_kaks"
-  | "vasakul_aknaga"
-  | "paremal_aknaga";
+  | "uks_pluss_kaks";
 
 type Store = {
   language: Language;
