@@ -55,8 +55,8 @@ const Panel = ({
   return (
     <div
       style={{
-        border: `6px solid ${color}`,
-        background: filled ? color : "#cdd3ff",
+        // border: `6px solid ${color}`,
+        background: filled ? color : "#e9ecff",
         width: width * scale,
         height: height * scale,
         position: "relative",
