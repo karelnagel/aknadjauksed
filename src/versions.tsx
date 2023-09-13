@@ -244,6 +244,7 @@ export const RoduPoolKlaas = () => {
     </div>
   );
 };
+
 export const Rodu = () => {
   return <UheOsaline h={2000} />;
 };
@@ -361,6 +362,7 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
   const [widthRight, setWidthRight] = useState(1000);
   const [heightLeft, setHeightLeft] = useState(1000);
   const [heightDoor, setHeightDoor] = useState(2000);
+  const [heightDoorBottom, setHeightDoorBottom] = useState(2000);
   const [heightRight, setHeightRight] = useState(1000);
   const scale = useScale([Math.max(heightDoor, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
@@ -370,10 +372,15 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ left: -50, top: "50%" }} />
       </Panel>
-      <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
-        <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
-      </Panel>
+      <div style={{ position: "relative" }}>
+        <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
+          <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+          <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
+        </Panel>
+        <Panel name="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
+          <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: 50 }} />
+        </Panel>
+      </div>
       <Panel name="opening-right" width={widthRight} height={heightRight} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
         <Input
@@ -392,16 +399,22 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
 export const RoduPoolKlaasAknaga = () => {
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(2000);
+  const [heightDoorBottom, setHeightDoorBottom] = useState(2000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight], [windowWidth, doorWidth]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
-        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: -32, left: "50%" }} />
-      </Panel>
+      <div style={{ position: "relative" }}>
+        <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
+          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+          <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: 50 }} />
+        </Panel>
+        <Panel name="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
+          <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: 50 }} />
+        </Panel>
+      </div>
       <Panel name="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
         <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -32, left: "50%" }} />
         <Input
