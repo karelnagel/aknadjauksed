@@ -409,10 +409,10 @@ export const RoduPoolKlaasAknaga = () => {
       <div style={{ position: "relative" }}>
         <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-          <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: 50 }} />
+          <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
         <Panel name="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
-          <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: 50 }} />
+          <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
       </div>
       <Panel name="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
