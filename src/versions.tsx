@@ -361,8 +361,8 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
   const [doorWidth, setDoorWidth] = useState(1000);
   const [widthRight, setWidthRight] = useState(1000);
   const [heightLeft, setHeightLeft] = useState(1000);
-  const [heightDoor, setHeightDoor] = useState(2000);
-  const [heightDoorBottom, setHeightDoorBottom] = useState(2000);
+  const [heightDoor, setHeightDoor] = useState(1000);
+  const [heightDoorBottom, setHeightDoorBottom] = useState(1000);
   const [heightRight, setHeightRight] = useState(1000);
   const scale = useScale([Math.max(heightDoor + heightDoorBottom, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
@@ -398,8 +398,8 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
 
 export const RoduPoolKlaasAknaga = () => {
   const [doorWidth, setDoorWidth] = useState(1000);
-  const [doorHeight, setDoorHeight] = useState(2000);
-  const [heightDoorBottom, setHeightDoorBottom] = useState(2000);
+  const [doorHeight, setDoorHeight] = useState(1000);
+  const [heightDoorBottom, setHeightDoorBottom] = useState(1000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight, heightDoorBottom], [windowWidth, doorWidth]);
