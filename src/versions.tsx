@@ -334,7 +334,7 @@ export const NeljaOsaline = () => {
   const [widthThird, setWidthThird] = useState(500);
   const [widthFourth, setWidthFourth] = useState(500);
   const [height, setHeight] = useState(500);
-  const scale = useScale([height], [widthFirst, widthSecond, widthThird]);
+  const scale = useScale([height], [widthFirst, widthSecond, widthThird, widthFourth]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
