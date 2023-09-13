@@ -312,7 +312,7 @@ export const ParemalAknaga = () => {
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
         <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
-        <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: -32, left: "50%" }} />
+        <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
       </Panel>
       <Panel name="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
         <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -32, left: "50%" }} />
