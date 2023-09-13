@@ -329,27 +329,27 @@ export const ParemalAknaga = () => {
 };
 
 export const NeljaOsaline = () => {
-  const [widthLeft, setWidthLeft] = useState(500);
-  const [widthCenter, setWidthCenter] = useState(500);
-  const [widthRight, setWidthRight] = useState(500);
-  const [heightTop, setHeightTop] = useState(500);
-  const [heightBottom, setHeightBottom] = useState(500);
-  const scale = useScale([heightTop, heightBottom], [widthLeft, widthCenter, widthRight]);
+  const [widthFirst, setWidthFirst] = useState(500);
+  const [widthSecond, setWidthSecond] = useState(500);
+  const [widthThird, setWidthThird] = useState(500);
+  const [widthFourth, setWidthFourth] = useState(500);
+  const [height, setHeight] = useState(500);
+  const scale = useScale([height], [widthFirst, widthSecond, widthThird]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel name="opening-left" width={widthLeft} height={heightTop} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
-        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ left: -50, top: "50%" }} />
+      <Panel name="opening-first" width={widthFirst} height={height} scale={scale}>
+        <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-center" width={widthCenter} height={heightTop} scale={scale}>
-        <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -32, left: "50%" }} />
+      <Panel name="opening-second" width={widthSecond} height={height} scale={scale}>
+        <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-right" width={widthRight} height={heightTop} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
+      <Panel name="opening-third" width={widthThird} height={height} scale={scale}>
+        <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-bottom" width={widthRight} height={heightBottom} scale={scale}>
-        <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
+      <Panel name="opening-fourth" width={widthFourth} height={height} scale={scale}>
+        <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
     </div>
   );
