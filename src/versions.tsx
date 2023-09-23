@@ -199,7 +199,6 @@ export const KaheOsaline = () => {
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
       <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
       </Panel>
@@ -207,6 +206,7 @@ export const KaheOsaline = () => {
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
     </div>
   );
 };
@@ -225,7 +225,6 @@ export const KolmeOsaline = () => {
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
       <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
       </Panel>
@@ -236,6 +235,40 @@ export const KolmeOsaline = () => {
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+    </div>
+  );
+};
+
+export const NeljaOsaline = () => {
+  const [widthFirst, setWidthFirst] = useState(500);
+  const [widthSecond, setWidthSecond] = useState(500);
+  const [widthThird, setWidthThird] = useState(500);
+  const [widthFourth, setWidthFourth] = useState(500);
+  const [height, setHeight] = useState(500);
+  const [width, setWidth] = useState(2000);
+  const scale = useScale([height], [width]);
+  const actualWidthFirst = (widthFirst / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthSecond = (widthSecond / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthThird = (widthThird / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthFourth = (widthFourth / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+
+  return (
+    <div style={{ position: "relative", display: "flex" }}>
+      <Panel name="opening-first" width={actualWidthFirst} height={height} scale={scale}>
+        <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="opening-second" width={actualWidthSecond} height={height} scale={scale}>
+        <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="opening-third" width={actualWidthThird} height={height} scale={scale}>
+        <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -32, left: "50%" }} />
+      </Panel>
+      <Panel name="opening-fourth" width={actualWidthFourth} height={height} scale={scale}>
+        <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -32, left: "50%" }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+      </Panel>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
     </div>
   );
 };
@@ -371,39 +404,6 @@ export const ParemalAknaga = () => {
           setValue={setWindowHeight}
           style={{ right: -120, top: "50%" }}
         />
-      </Panel>
-    </div>
-  );
-};
-
-export const NeljaOsaline = () => {
-  const [widthFirst, setWidthFirst] = useState(500);
-  const [widthSecond, setWidthSecond] = useState(500);
-  const [widthThird, setWidthThird] = useState(500);
-  const [widthFourth, setWidthFourth] = useState(500);
-  const [height, setHeight] = useState(500);
-  const [width, setWidth] = useState(2000);
-  const scale = useScale([height], [width]);
-  const actualWidthFirst = (widthFirst / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
-  const actualWidthSecond = (widthSecond / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
-  const actualWidthThird = (widthThird / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
-  const actualWidthFourth = (widthFourth / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
-
-  return (
-    <div style={{ position: "relative", display: "flex" }}>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
-      <Panel name="opening-first" width={actualWidthFirst} height={height} scale={scale}>
-        <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -32, left: "50%" }} />
-      </Panel>
-      <Panel name="opening-second" width={actualWidthSecond} height={height} scale={scale}>
-        <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -32, left: "50%" }} />
-      </Panel>
-      <Panel name="opening-third" width={actualWidthThird} height={height} scale={scale}>
-        <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -32, left: "50%" }} />
-      </Panel>
-      <Panel name="opening-fourth" width={actualWidthFourth} height={height} scale={scale}>
-        <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -32, left: "50%" }} />
-        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
     </div>
   );
