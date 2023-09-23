@@ -95,13 +95,13 @@ const Panel = ({
       }}
     >
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
-        {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("Справа")) && (
+        {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("справа")) && (
           <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />
         )}
-        {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("Слева")) && (
+        {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("слева")) && (
           <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />
         )}
-        {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("Сверху")) && (
+        {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
           <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
         )}
       </svg>
