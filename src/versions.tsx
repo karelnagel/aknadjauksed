@@ -287,7 +287,7 @@ export const Rodu = () => {
 };
 
 export const UksPlussKaks = () => {
-  const [heightTop, setHeightTop] = useState(400);
+  const [heightTop, setHeightTop] = useState(800);
   const [heightBottom, setHeightBottom] = useState(2000);
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidthRight] = useState(1000);
