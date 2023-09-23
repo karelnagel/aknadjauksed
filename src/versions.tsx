@@ -33,6 +33,7 @@ const colors = {
   "Valge-RAL 9018": "#CFD3CD",
 };
 const WIDTH = 800;
+
 const Panel = ({
   name,
   width,
@@ -64,9 +65,15 @@ const Panel = ({
       }}
     >
       <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
-        {opening?.toLocaleLowerCase().includes("paremalt") && <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />}
-        {opening?.toLocaleLowerCase().includes("vasakult") && <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />}
-        {opening?.toLocaleLowerCase().includes("ülevalt") && <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />}
+        {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("Справа")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />
+        )}
+        {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("Слева")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />
+        )}
+        {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("Сверху")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
+        )}
       </svg>
       {children}
     </div>
