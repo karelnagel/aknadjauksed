@@ -19,7 +19,7 @@
     "zustand": "^4.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build && cp build/static/js/*.js build/static/js/main.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

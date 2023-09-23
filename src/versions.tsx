@@ -191,15 +191,19 @@ export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) =
 export const KaheOsaline = () => {
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidth2] = useState(1000);
+  const [width, setWidth] = useState(2000);
   const [height, setHeight] = useState(1000);
-  const scale = useScale([height], [widthLeft, widthRight]);
+  const scale = useScale([height], [width]);
+  const actualWidthLeft = (widthLeft / (widthLeft + widthRight)) * width;
+  const actualWidthRight = (widthRight / (widthLeft + widthRight)) * width;
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel name="opening-left" width={widthLeft} height={height} scale={scale}>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-right" width={widthRight} height={height} scale={scale}>
+      <Panel name="opening-right" width={actualWidthRight} height={height} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
@@ -211,18 +215,24 @@ export const KolmeOsaline = () => {
   const [widthLeft, setWidthLeft] = useState(500);
   const [widthCenter, setWidthCenter] = useState(1000);
   const [widthRight, setWidthRight] = useState(500);
+  const [width, setWidth] = useState(2000);
   const [height, setHeight] = useState(1000);
-  const scale = useScale([height], [widthLeft, widthCenter, widthRight]);
+  const scale = useScale([height], [width]);
+
+  const actualWidthLeft = (widthLeft / (widthLeft + widthRight + widthCenter)) * width;
+  const actualWidthCenter = (widthCenter / (widthLeft + widthRight + widthCenter)) * width;
+  const actualWidthRight = (widthRight / (widthLeft + widthRight + widthCenter)) * width;
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel name="opening-left" width={widthLeft} height={height} scale={scale}>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-center" width={widthCenter} height={height} scale={scale}>
+      <Panel name="opening-center" width={actualWidthCenter} height={height} scale={scale}>
         <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-right" width={widthRight} height={height} scale={scale}>
+      <Panel name="opening-right" width={actualWidthRight} height={height} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
@@ -372,20 +382,26 @@ export const NeljaOsaline = () => {
   const [widthThird, setWidthThird] = useState(500);
   const [widthFourth, setWidthFourth] = useState(500);
   const [height, setHeight] = useState(500);
-  const scale = useScale([height], [widthFirst, widthSecond, widthThird, widthFourth]);
+  const [width, setWidth] = useState(2000);
+  const scale = useScale([height], [width]);
+  const actualWidthFirst = (widthFirst / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthSecond = (widthSecond / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthThird = (widthThird / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
+  const actualWidthFourth = (widthFourth / (widthFirst + widthSecond + widthThird + widthFourth)) * width;
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel name="opening-first" width={widthFirst} height={height} scale={scale}>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Panel name="opening-first" width={actualWidthFirst} height={height} scale={scale}>
         <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-second" width={widthSecond} height={height} scale={scale}>
+      <Panel name="opening-second" width={actualWidthSecond} height={height} scale={scale}>
         <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-third" width={widthThird} height={height} scale={scale}>
+      <Panel name="opening-third" width={actualWidthThird} height={height} scale={scale}>
         <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -32, left: "50%" }} />
       </Panel>
-      <Panel name="opening-fourth" width={widthFourth} height={height} scale={scale}>
+      <Panel name="opening-fourth" width={actualWidthFourth} height={height} scale={scale}>
         <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -32, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
