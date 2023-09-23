@@ -181,7 +181,7 @@ export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) =
   return (
     <div style={{}}>
       <Panel name="window-opening" width={width} height={height} scale={scale}>
-        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
     </div>
@@ -200,13 +200,13 @@ export const KaheOsaline = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-right" width={actualWidthRight} height={height} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidth2} style={{ top: -32, left: "50%" }} />
+        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidth2} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
 };
@@ -226,16 +226,16 @@ export const KolmeOsaline = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="opening-left" width={actualWidthLeft} height={height} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-center" width={actualWidthCenter} height={height} scale={scale}>
-        <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -32, left: "50%" }} />
+        <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-right" width={actualWidthRight} height={height} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
+        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
 };
@@ -256,19 +256,19 @@ export const NeljaOsaline = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="opening-first" width={actualWidthFirst} height={height} scale={scale}>
-        <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -32, left: "50%" }} />
+        <Input name="width-first" value={widthFirst} label="Laius" setValue={setWidthFirst} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-second" width={actualWidthSecond} height={height} scale={scale}>
-        <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -32, left: "50%" }} />
+        <Input name="width-second" value={widthSecond} label="Laius" setValue={setWidthSecond} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-third" width={actualWidthThird} height={height} scale={scale}>
-        <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -32, left: "50%" }} />
+        <Input name="width-third" value={widthThird} label="Laius" setValue={setWidthThird} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel name="opening-fourth" width={actualWidthFourth} height={height} scale={scale}>
-        <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -32, left: "50%" }} />
+        <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -32, left: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
 };
@@ -285,15 +285,15 @@ export const AknadMolemalPool = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="opening-left" width={widthLeft} height={heightLeft} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ left: -50, top: "50%" }} />
       </Panel>
       <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
-        <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
         <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
       </Panel>
       <Panel name="opening-right" width={widthRight} height={heightRight} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
+        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -49, left: "50%" }} />
         <Input
           name="height-right"
           max={heightDoor}
@@ -315,7 +315,7 @@ export const RoduPoolKlaas = () => {
   return (
     <div style={{ position: "relative" }}>
       <Panel name="window-opening" width={width} height={heightTop} scale={scale}>
-        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
       <Panel filled name="" width={width} height={heightBottom} scale={scale}>
@@ -363,7 +363,7 @@ export const UksPlussKaks = () => {
 //   return (
 //     <div style={{ position: "relative", display: "flex" }}>
 //       <Panel name="window-left" width={windowWidth} height={windowHeight} scale={scale}>
-//         <Input name="window-width" value={windowWidth} label="Laius" setValue={setWindowWidth} style={{ top: -32, left: "50%" }} />
+//         <Input name="window-width" value={windowWidth} label="Laius" setValue={setWindowWidth} style={{top: -49, left: "50%" }} />
 //         <Input
 //           name="window-height"
 //           max={doorHeight}
@@ -374,7 +374,7 @@ export const UksPlussKaks = () => {
 //         />
 //       </Panel>
 //       <Panel name="window-right" width={doorWidth} height={doorHeight} scale={scale}>
-//         <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+//         <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{top: -49, left: "50%" }} />
 //         <Input name="door-height" value={doorHeight} label="Height" setValue={setDoorHeight} style={{ right: -110, top: "50%" }} />
 //       </Panel>
 //     </div>
@@ -391,11 +391,11 @@ export const ParemalAknaga = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
-        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
         <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
       </Panel>
       <Panel name="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -49, left: "50%" }} />
         <Input
           name="window-height"
           max={doorHeight}
@@ -422,12 +422,12 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel name="opening-left" width={widthLeft} height={heightLeft} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -32, left: "50%" }} />
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ left: -50, top: "50%" }} />
       </Panel>
       <div style={{ position: "relative" }}>
         <Panel name="opening-door" width={doorWidth} height={heightDoor} scale={scale}>
-          <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+          <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
         </Panel>
         <Panel name="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
@@ -435,7 +435,7 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
         </Panel>
       </div>
       <Panel name="opening-right" width={widthRight} height={heightRight} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -32, left: "50%" }} />
+        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -49, left: "50%" }} />
         <Input
           name="height-right"
           max={heightDoor}
@@ -461,7 +461,7 @@ export const RoduPoolKlaasAknaga = () => {
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
         <Panel name="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
-          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -32, left: "50%" }} />
+          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
         <Panel name="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
@@ -469,7 +469,7 @@ export const RoduPoolKlaasAknaga = () => {
         </Panel>
       </div>
       <Panel name="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -32, left: "50%" }} />
+        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -49, left: "50%" }} />
         <Input
           name="window-height"
           max={doorHeight}
