@@ -414,16 +414,15 @@ export const ParemalAknaga = () => {
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
         <Panel width={doorWidth} height={doorHeight} scale={scale}>
-          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
+          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -120, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
         <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
-
         </div>
       </div>
       <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -49, left: "50%" }} />
+        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ bottom: -120, left: "50%" }} />
         <Input
           name="window-height"
           max={doorHeight}
@@ -489,18 +488,19 @@ export const RoduPoolKlaasAknaga = () => {
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
         <Panel width={doorWidth} height={doorHeight} scale={scale}>
-          <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
         <Panel width={doorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
+        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -49, left: "50%" }} />
+
         <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
       <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -49, left: "50%" }} />
+        <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ bottom: -120, left: "50%" }} />
         <Input
           name="window-height"
           max={doorHeight}
