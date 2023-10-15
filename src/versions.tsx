@@ -369,8 +369,8 @@ export const UksPlussKaks = () => {
           <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
         </Panel>
       </div>
-      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -110, left: "50%" }} />
+      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: -30, top: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -20, left: "50%" }} />
     </div>
   );
 };
