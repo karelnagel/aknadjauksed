@@ -314,7 +314,7 @@ export const RoduPoolKlaas = () => {
   const [height, setHeight] = useState(2000);
   const [heightTop, setHeightTop] = useState(1000);
   const [heightBottom, setHeightBottom] = useState(1000);
-  const scale = useScale([heightTop, heightBottom], [width]);
+  const scale = useScale([height], [width]);
   const realTopHeight = (heightTop / (heightTop + heightBottom)) * height;
   const realBottomHeight = (heightBottom / (heightTop + heightBottom)) * height;
   return (
@@ -344,25 +344,33 @@ export const Rodu = () => {
 };
 
 export const UksPlussKaks = () => {
+  const [height, setHeight] = useState(2800);
+  const [width, setWidth] = useState(2000);
   const [heightTop, setHeightTop] = useState(800);
   const [heightBottom, setHeightBottom] = useState(2000);
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthRight, setWidthRight] = useState(1000);
-  const scale = useScale([heightTop, heightBottom], [widthLeft, widthRight]);
+  const scale = useScale([height], [width]);
+  const actualWidthLeft = (widthLeft / (widthLeft + widthRight)) * width;
+  const actualWidthRight = (widthRight / (widthLeft + widthRight)) * width;
+  const actualHeightTop = (heightTop / (heightTop + heightBottom)) * height;
+  const actualHeightBottom = (heightBottom / (heightTop + heightBottom)) * height;
   return (
-    <div style={{}}>
-      <Panel openingInputName="opening-top" width={widthLeft + widthRight} height={heightTop} scale={scale}>
+    <div style={{ position: "relative" }}>
+      <Panel openingInputName="opening-top" width={widthLeft + widthRight} height={actualHeightTop} scale={scale}>
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
       <div style={{ display: "flex" }}>
-        <Panel openingInputName="opening-left" width={widthLeft} height={heightBottom} scale={scale}>
+        <Panel openingInputName="opening-left" width={actualWidthLeft} height={actualHeightBottom} scale={scale}>
           <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: -110, left: "50%" }} />
         </Panel>
-        <Panel openingInputName="opening-right" width={widthRight} height={heightBottom} scale={scale}>
+        <Panel openingInputName="opening-right" width={actualWidthRight} height={actualHeightBottom} scale={scale}>
           <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ bottom: -110, left: "50%" }} />
           <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
         </Panel>
       </div>
+      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -110, left: "50%" }} />
     </div>
   );
 };
