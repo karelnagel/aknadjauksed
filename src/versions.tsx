@@ -483,6 +483,9 @@ export const RoduPoolKlaasAknaga = () => {
         <Panel width={doorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
+        <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
+          <Opening openingInputName="door-opening" />
+        </div>
       </div>
       <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
         <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ top: -49, left: "50%" }} />
