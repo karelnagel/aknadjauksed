@@ -362,10 +362,10 @@ export const UksPlussKaks = () => {
       </Panel>
       <div style={{ display: "flex" }}>
         <Panel openingInputName="opening-left" width={actualWidthLeft} height={actualHeightBottom} scale={scale}>
-          <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: -110, left: "50%" }} />
+          <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: -120, left: "50%" }} />
         </Panel>
         <Panel openingInputName="opening-right" width={actualWidthRight} height={actualHeightBottom} scale={scale}>
-          <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ bottom: -110, left: "50%" }} />
+          <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ bottom: -120, left: "50%" }} />
           <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
         </Panel>
       </div>
