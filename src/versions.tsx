@@ -409,7 +409,7 @@ export const ParemalAknaga = () => {
   const [doorHeight, setDoorHeight] = useState(2000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
-  const scale = useScale([doorHeight], [windowWidth, doorWidth]);
+  const scale = useScale([doorHeight], [width]);
 
   const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
   const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
@@ -487,7 +487,7 @@ export const RoduPoolKlaasAknaga = () => {
   const [heightDoorBottom, setHeightDoorBottom] = useState(1000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
-  const scale = useScale([doorHeight, heightDoorBottom], [windowWidth, doorWidth]);
+  const scale = useScale([doorHeight, heightDoorBottom], [width]);
   const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
   const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
 
