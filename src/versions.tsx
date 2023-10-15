@@ -404,16 +404,19 @@ export const UksPlussKaks = () => {
 // };
 
 export const ParemalAknaga = () => {
+  const [width, setWidth] = useState(2000);
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(2000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight], [windowWidth, doorWidth]);
 
+  const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
+  const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
-        <Panel width={doorWidth} height={doorHeight} scale={scale}>
+        <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -120, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
@@ -421,7 +424,7 @@ export const ParemalAknaga = () => {
           <Opening openingInputName="door-opening" />
         </div>
       </div>
-      <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
+      <Panel openingInputName="window-opening" width={realWindowWidth} height={windowHeight} scale={scale}>
         <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ bottom: -120, left: "50%" }} />
         <Input
           name="window-height"
@@ -432,6 +435,7 @@ export const ParemalAknaga = () => {
           style={{ right: -120, top: "50%" }}
         />
       </Panel>
+      <Input name="window" value={width} label="Akna laius" setValue={setWidth} style={{ top: -120, left: "50%" }} />
     </div>
   );
 };
@@ -477,29 +481,31 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
 };
 
 export const RoduPoolKlaasAknaga = () => {
+  const [width, setWidth] = useState(2000);
   const [doorWidth, setDoorWidth] = useState(1000);
   const [doorHeight, setDoorHeight] = useState(1000);
   const [heightDoorBottom, setHeightDoorBottom] = useState(1000);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight, heightDoorBottom], [windowWidth, doorWidth]);
+  const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
+  const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
-        <Panel width={doorWidth} height={doorHeight} scale={scale}>
+        <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
-        <Panel width={doorWidth} height={heightDoorBottom} scale={scale} filled>
+        <Panel width={realDoorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
         <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -49, left: "50%" }} />
-
         <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
-      <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
+      <Panel openingInputName="window-opening" width={realWindowWidth} height={windowHeight} scale={scale}>
         <Input name="window-width" value={windowWidth} label="Akna laius" setValue={setWindowWidth} style={{ bottom: -120, left: "50%" }} />
         <Input
           name="window-height"
@@ -510,6 +516,7 @@ export const RoduPoolKlaasAknaga = () => {
           style={{ right: -120, top: "50%" }}
         />
       </Panel>
+      <Input name="window" value={width} label="Akna laius" setValue={setWidth} style={{ top: -120, left: "50%" }} />
     </div>
   );
 };
