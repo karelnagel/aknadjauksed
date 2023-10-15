@@ -177,21 +177,16 @@ const useScale = (heights: number[], widths: number[]) => {
   return Math.min(HEIGHT / height, maxWidth / width);
 };
 
-export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) => {
+export const UheOsaline = ({ w = 1000, h = 1000, opening = "window-opening" }: { w?: number; h?: number, opening?: string }) => {
   const [width, setWidth] = useState(w);
   const [height, setHeight] = useState(h);
   const scale = useScale([height], [width]);
 
   return (
-    <div style={{ position: "relative" }}>
-      <Panel width={width} height={height} scale={scale}>
-        <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
-        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
-      </Panel>
-      <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
-        <Opening openingInputName="window-opening" />
-      </div>
-    </div>
+    <Panel openingInputName={opening} width={width} height={height} scale={scale}>
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
+      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+    </Panel>
   );
 };
 
@@ -321,19 +316,27 @@ export const RoduPoolKlaas = () => {
   const scale = useScale([heightTop, heightBottom], [width]);
   return (
     <div style={{ position: "relative" }}>
-      <Panel openingInputName="window-opening" width={width} height={heightTop} scale={scale}>
+      <Panel width={width} height={heightTop} scale={scale}>
         <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Panel filled openingInputName="" width={width} height={heightBottom} scale={scale}>
+      <Panel filled width={width} height={heightBottom} scale={scale}>
         <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
       </Panel>
+      <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
+        <Opening openingInputName="window-opening" />
+      </div>
     </div>
   );
 };
 
 export const Rodu = () => {
-  return <UheOsaline h={2000} />;
+  return <div style={{ position: "relative" }}>
+    <UheOsaline h={2000} opening={"not needed"} />
+    <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
+      <Opening openingInputName="window-opening" />
+    </div>
+  </div >
 };
 
 export const UksPlussKaks = () => {
@@ -437,7 +440,7 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
           <Input name="door-width" value={doorWidth} label="Laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={heightDoor} label="Height" setValue={setHeightDoor} style={{ top: "50%", left: 50 }} />
         </Panel>
-        <Panel openingInputName="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
+        <Panel width={doorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: 50 }} />
         </Panel>
       </div>
@@ -471,7 +474,7 @@ export const RoduPoolKlaasAknaga = () => {
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
-        <Panel openingInputName="" width={doorWidth} height={heightDoorBottom} scale={scale} filled>
+        <Panel width={doorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
       </div>
