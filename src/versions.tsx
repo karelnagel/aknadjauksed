@@ -357,7 +357,7 @@ export const UksPlussKaks = () => {
   const actualHeightBottom = (heightBottom / (heightTop + heightBottom)) * height;
   return (
     <div style={{ position: "relative" }}>
-      <Panel openingInputName="opening-top" width={widthLeft + widthRight} height={actualHeightTop} scale={scale}>
+      <Panel openingInputName="opening-top" width={width} height={actualHeightTop} scale={scale}>
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
       <div style={{ display: "flex" }}>
