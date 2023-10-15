@@ -435,7 +435,7 @@ export const ParemalAknaga = () => {
           style={{ right: -120, top: "50%" }}
         />
       </Panel>
-      <Input name="window" value={width} label="Akna laius" setValue={setWidth} style={{ top: -120, left: "50%" }} />
+      <Input name="window" value={width} label="Akna laius" setValue={setWidth} style={{ top: -20, left: "50%" }} />
     </div>
   );
 };
@@ -500,7 +500,7 @@ export const RoduPoolKlaasAknaga = () => {
         <Panel width={realDoorWidth} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
-        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -49, left: "50%" }} />
+        <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -90, left: "50%" }} />
         <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
@@ -516,7 +516,7 @@ export const RoduPoolKlaasAknaga = () => {
           style={{ right: -120, top: "50%" }}
         />
       </Panel>
-      <Input name="window" value={width} label="Akna laius" setValue={setWidth} style={{ top: -120, left: "50%" }} />
+      <Input name="width" value={width} label="Akna laius" setValue={setWidth} style={{ top: -20, left: "50%" }} />
     </div>
   );
 };
