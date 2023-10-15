@@ -351,24 +351,13 @@ export const UksPlussKaks = () => {
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
       <div style={{ display: "flex" }}>
-        <div style={{ position: "relative" }}>
-          <Panel width={widthLeft} height={heightBottom} scale={scale}>
-            <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: -110, left: "50%" }} />
-          </Panel>
-          <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
-            <Opening openingInputName="opening-left" />
-          </div>
-        </div>
-
-        <div style={{ position: "relative" }}>
-          <Panel width={widthRight} height={heightBottom} scale={scale}>
-            <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ bottom: -110, left: "50%" }} />
-            <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
-          </Panel>
-          <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
-            <Opening openingInputName="opening-right" />
-          </div>
-        </div>
+        <Panel openingInputName="opening-left" width={widthLeft} height={heightBottom} scale={scale}>
+          <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: -110, left: "50%" }} />
+        </Panel>
+        <Panel openingInputName="opening-right" width={widthRight} height={heightBottom} scale={scale}>
+          <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ bottom: -110, left: "50%" }} />
+          <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
+        </Panel>
       </div>
     </div>
   );
