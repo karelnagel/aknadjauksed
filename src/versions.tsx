@@ -311,21 +311,25 @@ export const AknadMolemalPool = () => {
 
 export const RoduPoolKlaas = () => {
   const [width, setWidth] = useState(1000);
+  const [height, setHeight] = useState(2000);
   const [heightTop, setHeightTop] = useState(1000);
   const [heightBottom, setHeightBottom] = useState(1000);
   const scale = useScale([heightTop, heightBottom], [width]);
+  const realTopHeight = (heightTop / (heightTop + heightBottom)) * height;
+  const realBottomHeight = (heightBottom / (heightTop + heightBottom)) * height;
   return (
     <div style={{ position: "relative" }}>
-      <Panel width={width} height={heightTop} scale={scale}>
+      <Panel width={width} height={realTopHeight} scale={scale}>
         <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
         <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Panel filled width={width} height={heightBottom} scale={scale}>
+      <Panel filled width={width} height={realBottomHeight} scale={scale}>
         <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ right: -120, top: "50%" }} />
       </Panel>
       <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
         <Opening openingInputName="window-opening" />
       </div>
+      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: -50, top: "50%" }} />
     </div>
   );
 };
