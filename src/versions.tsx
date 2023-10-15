@@ -183,7 +183,10 @@ export const UheOsaline = ({ w = 1000, h = 1000 }: { w?: number; h?: number }) =
   const scale = useScale([height], [width]);
 
   return (
-    <div style={{}}>
+    <div style={{ position: "relative" }}>
+      <div style={{ position: "absolute", width: "100%", height: "100%" }}>
+        <Opening openingInputName="window-opening" />
+      </div>
       <Panel openingInputName="window-opening" width={width} height={height} scale={scale}>
         <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
