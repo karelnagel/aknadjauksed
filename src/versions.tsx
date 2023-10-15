@@ -476,7 +476,7 @@ export const RoduPoolKlaasAknaga = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <div style={{ position: "relative" }}>
-        <Panel openingInputName="door-opening" width={doorWidth} height={doorHeight} scale={scale}>
+        <Panel width={doorWidth} height={doorHeight} scale={scale}>
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: -49, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
