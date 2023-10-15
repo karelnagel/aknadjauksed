@@ -329,7 +329,7 @@ export const RoduPoolKlaas = () => {
       <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
         <Opening openingInputName="window-opening" />
       </div>
-      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: -50, top: "50%" }} />
+      <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: -30, top: "50%" }} />
     </div>
   );
 };
