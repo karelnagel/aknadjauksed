@@ -132,11 +132,16 @@ const Input = ({
   max?: number;
 }) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-
+  const [val, setVal] = useState(value)
   const delayedSetValue = (val: number) => {
     if (timeoutId) clearTimeout(timeoutId);
-    setTimeoutId(setTimeout(() => setValue(val), 500));
+    setTimeoutId(setTimeout(() => {
+      setValue(val)
+    }, 500));
   };
+  useEffect(() => {
+    setVal(value)
+  }, [value])
 
   return (
     <label
@@ -151,14 +156,16 @@ const Input = ({
         ...style,
       }}
     >
-      {/* <span>{label}</span> */}
       <input
         name={name}
         min={min}
         max={max}
         type="number"
-        defaultValue={value}
-        onChange={(e) => delayedSetValue(Number(e.target.value))}
+        value={val}
+        onChange={(e) => {
+          setVal(Number(e.target.value))
+          delayedSetValue(Number(e.target.value))
+        }}
         style={{ width: "100%" }}
       />
     </label>
@@ -217,8 +224,9 @@ export const KolmeOsaline = () => {
   const [widthLeft, setWidthLeft] = useState(500);
   const [widthCenter, setWidthCenter] = useState(1000);
   const [widthRight, setWidthRight] = useState(500);
-  const [width, setWidth] = useState(2000);
   const [height, setHeight] = useState(1000);
+
+  const width = widthLeft + widthCenter + widthRight;
   const scale = useScale([height], [width]);
 
   const widthLeftPercentage = (widthLeft / (widthLeft + widthRight + widthCenter));
@@ -228,17 +236,22 @@ export const KolmeOsaline = () => {
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel openingInputName="opening-left" width={widthLeftPercentage * width} height={height} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={(newLeftWidth) => {
+          setWidthLeft(newLeftWidth);
+        }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-center" width={widtCenterPercentage * width} height={height} scale={scale}>
-        <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -49, left: "50%" }} />
+        <Input name="width-center" value={widthCenter} label="Laius" setValue={(newCenterWidth) => {
+          setWidthCenter(newCenterWidth);
+        }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-right" width={widthRightPercentage * width} height={height} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -49, left: "50%" }} />
+        <Input name="width-right" value={widthRight} label="Laius" setValue={(newRightWidth) => {
+          setWidthRight(newRightWidth);
+        }} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
       <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
-        setWidth(newWidth);
         setWidthLeft(newWidth * widthLeftPercentage);
         setWidthCenter(newWidth * widtCenterPercentage);
         setWidthRight(newWidth * widthRightPercentage);
