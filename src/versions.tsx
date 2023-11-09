@@ -229,32 +229,29 @@ export const KolmeOsaline = () => {
   const width = widthLeft + widthCenter + widthRight;
   const scale = useScale([height], [width]);
 
-  const widthLeftPercentage = (widthLeft / (widthLeft + widthRight + widthCenter));
-  const widtCenterPercentage = (widthCenter / (widthLeft + widthRight + widthCenter));
-  const widthRightPercentage = (widthRight / (widthLeft + widthRight + widthCenter));
-
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel openingInputName="opening-left" width={widthLeftPercentage * width} height={height} scale={scale}>
+      <Panel openingInputName="opening-left" width={widthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={(newLeftWidth) => {
           setWidthLeft(newLeftWidth);
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
-      <Panel openingInputName="opening-center" width={widtCenterPercentage * width} height={height} scale={scale}>
+      <Panel openingInputName="opening-center" width={widthCenter} height={height} scale={scale}>
         <Input name="width-center" value={widthCenter} label="Laius" setValue={(newCenterWidth) => {
           setWidthCenter(newCenterWidth);
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
-      <Panel openingInputName="opening-right" width={widthRightPercentage * width} height={height} scale={scale}>
+      <Panel openingInputName="opening-right" width={widthRight} height={height} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={(newRightWidth) => {
           setWidthRight(newRightWidth);
         }} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
       <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
-        setWidthLeft(newWidth * widthLeftPercentage);
-        setWidthCenter(newWidth * widtCenterPercentage);
-        setWidthRight(newWidth * widthRightPercentage);
+        const total = widthLeft + widthCenter + widthRight;
+        setWidthLeft((widthLeft / total) * newWidth);
+        setWidthCenter((widthCenter / total) * newWidth);
+        setWidthRight((widthRight / total) * newWidth);
       }} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
