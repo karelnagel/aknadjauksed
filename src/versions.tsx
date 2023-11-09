@@ -100,7 +100,7 @@ const Panel = ({
   return (
     <div
       style={{
-        border: `30px solid ${color}`,
+        border: `22px solid ${color}`,
         background: filled ? color : "#adecff",
         width: width * scale,
         height: height * scale,
@@ -249,9 +249,10 @@ export const KolmeOsaline = () => {
       </Panel>
       <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
         const total = widthLeft + widthCenter + widthRight;
-        setWidthLeft((widthLeft / total) * newWidth);
-        setWidthCenter((widthCenter / total) * newWidth);
-        setWidthRight((widthRight / total) * newWidth);
+        const getPercentage = (width: number) => width && total ? (width / total) * 100 : 1 / 3
+        setWidthLeft(getPercentage(widthLeft) * newWidth);
+        setWidthCenter(getPercentage(widthCenter) * newWidth);
+        setWidthRight(getPercentage(widthRight) * newWidth);
       }} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
