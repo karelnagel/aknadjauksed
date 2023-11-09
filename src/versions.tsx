@@ -114,10 +114,10 @@ const Panel = ({
   );
 };
 
+const numberToString = (value: number) => value ? Number.isInteger(value) ? value.toString() : value.toFixed(2) : "";
 const Input = ({
   value,
   setValue,
-  label,
   name,
   style,
   min = 0,
@@ -132,7 +132,7 @@ const Input = ({
   max?: number;
 }) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-  const [val, setVal] = useState(value ? value.toString() : "")
+  const [val, setVal] = useState(numberToString(value));
   const delayedSetValue = (val: number) => {
     if (timeoutId) clearTimeout(timeoutId);
     setTimeoutId(setTimeout(() => {
@@ -140,7 +140,7 @@ const Input = ({
     }, 500));
   };
   useEffect(() => {
-    setVal(value ? value.toString() : "")
+    setVal(numberToString(value))
   }, [value])
 
   return (
