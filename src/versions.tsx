@@ -221,23 +221,28 @@ export const KolmeOsaline = () => {
   const [height, setHeight] = useState(1000);
   const scale = useScale([height], [width]);
 
-  const actualWidthLeft = (widthLeft / (widthLeft + widthRight + widthCenter)) * width;
-  const actualWidthCenter = (widthCenter / (widthLeft + widthRight + widthCenter)) * width;
-  const actualWidthRight = (widthRight / (widthLeft + widthRight + widthCenter)) * width;
+  const widthLeftPercentage = (widthLeft / (widthLeft + widthRight + widthCenter));
+  const widtCenterPercentage = (widthCenter / (widthLeft + widthRight + widthCenter));
+  const widthRightPercentage = (widthRight / (widthLeft + widthRight + widthCenter));
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
-      <Panel openingInputName="opening-left" width={actualWidthLeft} height={height} scale={scale}>
+      <Panel openingInputName="opening-left" width={widthLeftPercentage * width} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ top: -49, left: "50%" }} />
       </Panel>
-      <Panel openingInputName="opening-center" width={actualWidthCenter} height={height} scale={scale}>
+      <Panel openingInputName="opening-center" width={widtCenterPercentage * width} height={height} scale={scale}>
         <Input name="width-center" value={widthCenter} label="Laius" setValue={setWidthCenter} style={{ top: -49, left: "50%" }} />
       </Panel>
-      <Panel openingInputName="opening-right" width={actualWidthRight} height={height} scale={scale}>
+      <Panel openingInputName="opening-right" width={widthRightPercentage * width} height={height} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidthRight} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: -92, left: "50%" }} />
+      <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
+        setWidth(newWidth);
+        setWidthLeft(newWidth * widthLeftPercentage);
+        setWidthCenter(newWidth * widtCenterPercentage);
+        setWidthRight(newWidth * widthRightPercentage);
+      }} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
 };
