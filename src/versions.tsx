@@ -221,9 +221,9 @@ export const KaheOsaline = () => {
 };
 
 export const KolmeOsaline = () => {
-  const [widthLeft, setWidthLeft] = useState(500);
+  const [widthLeft, setWidthLeft] = useState(1000);
   const [widthCenter, setWidthCenter] = useState(1000);
-  const [widthRight, setWidthRight] = useState(500);
+  const [widthRight, setWidthRight] = useState(1000);
   const [height, setHeight] = useState(1000);
 
   const width = widthLeft + widthCenter + widthRight;
