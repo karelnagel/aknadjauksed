@@ -132,7 +132,7 @@ const Input = ({
   max?: number;
 }) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-  const [val, setVal] = useState(value)
+  const [val, setVal] = useState(value.toString())
   const delayedSetValue = (val: number) => {
     if (timeoutId) clearTimeout(timeoutId);
     setTimeoutId(setTimeout(() => {
@@ -140,7 +140,7 @@ const Input = ({
     }, 500));
   };
   useEffect(() => {
-    setVal(value)
+    setVal(value.toString())
   }, [value])
 
   return (
@@ -163,7 +163,7 @@ const Input = ({
         type="number"
         value={val}
         onChange={(e) => {
-          setVal(Number(e.target.value))
+          setVal(e.target.value)
           delayedSetValue(Number(e.target.value))
         }}
         style={{ width: "100%" }}
