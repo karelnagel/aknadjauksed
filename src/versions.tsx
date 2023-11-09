@@ -249,7 +249,7 @@ export const KolmeOsaline = () => {
       </Panel>
       <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
         const total = widthLeft + widthCenter + widthRight;
-        const getPercentage = (width: number) => width && total ? (width / total) * 100 : 1 / 3
+        const getPercentage = (width: number) => width && total ? width / total : 1 / 3;
         setWidthLeft(getPercentage(widthLeft) * newWidth);
         setWidthCenter(getPercentage(widthCenter) * newWidth);
         setWidthRight(getPercentage(widthRight) * newWidth);
