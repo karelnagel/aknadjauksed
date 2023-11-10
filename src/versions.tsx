@@ -226,38 +226,43 @@ export const KolmeOsaline = () => {
   const [widthRight, setWidthRight] = useState(1000);
   const [height, setHeight] = useState(1000);
 
-  const width = widthLeft + widthCenter + widthRight;
-  const scale = useScale([height], [width]);
+  const total = (widthLeft + widthCenter + widthRight) || 0
+  const scale = useScale([height], [total]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel openingInputName="opening-left" width={widthLeft} height={height} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={(newLeftWidth) => {
-          const total = widthLeft + widthCenter + widthRight;
+        <Input name="width-left" value={widthLeft} label="Laius" setValue={(value) => {
+          const newLeftWidth = Math.min(value, total-2)
+          const center = Math.round((widthCenter / (widthCenter + widthRight)) * (total - newLeftWidth))
+          const right = total - newLeftWidth - center
           setWidthLeft(newLeftWidth);
-          setWidthCenter((widthCenter / (widthCenter + widthRight)) * (total - newLeftWidth));
-          setWidthRight((widthRight / (widthCenter + widthRight)) * (total - newLeftWidth));
+          setWidthCenter(center);
+          setWidthRight(right);
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-center" width={widthCenter} height={height} scale={scale}>
-        <Input name="width-center" value={widthCenter} label="Laius" setValue={(newCenterWidth) => {
-          const total = widthLeft + widthCenter + widthRight;
+        <Input name="width-center" value={widthCenter} label="Laius" setValue={(value) => {
+          const newCenterWidth = Math.min(value, total-2)
+          const left = Math.round((widthLeft / (widthLeft + widthRight)) * (total - newCenterWidth))
+          const right = total - newCenterWidth - left
+          setWidthLeft(left);
           setWidthCenter(newCenterWidth);
-          setWidthLeft((widthLeft / (widthLeft + widthRight)) * (total - newCenterWidth));
-          setWidthRight((widthRight / (widthLeft + widthRight)) * (total - newCenterWidth));
+          setWidthRight(right);
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-right" width={widthRight} height={height} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={(newRightWidth) => {
-          const total = widthLeft + widthCenter + widthRight;
+        <Input name="width-right" value={widthRight} label="Laius" setValue={(value) => {
+          const newRightWidth = Math.min(value, total-2)
+          const center = Math.round((widthCenter / (widthCenter + widthLeft)) * (total - newRightWidth))
+          const left = total - newRightWidth - center
+          setWidthLeft(left);
+          setWidthCenter(center);
           setWidthRight(newRightWidth);
-          setWidthLeft((widthLeft / (widthLeft + widthCenter)) * (total - newRightWidth));
-          setWidthCenter((widthCenter / (widthLeft + widthCenter)) * (total - newRightWidth));
-
         }} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={(newWidth) => {
+      <Input name="width" value={total} label="Laius" setValue={(newWidth) => {
         const total = widthLeft + widthCenter + widthRight;
         const getPercentage = (width: number) => width && total ? width / total : 1 / 3;
         setWidthLeft(getPercentage(widthLeft) * newWidth);
