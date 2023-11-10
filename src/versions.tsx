@@ -122,6 +122,7 @@ const Input = ({
   style,
   min = 0,
   max = 10000,
+  yellow,
 }: {
   value: number;
   setValue: (n: number) => void;
@@ -130,6 +131,7 @@ const Input = ({
   style: CSSProperties;
   min?: number;
   max?: number;
+  yellow?: boolean;
 }) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const [val, setVal] = useState(numberToString(value));
@@ -166,7 +168,7 @@ const Input = ({
           setVal(e.target.value)
           delayedSetValue(Number(e.target.value))
         }}
-        style={{ width: "100%" }}
+        style={{ width: "100%", background: yellow ? "#fff87a" : undefined }}
       />
     </label>
   );
@@ -220,7 +222,6 @@ export const KaheOsaline = () => {
   );
 };
 
-const background = "#fff87a"
 export const KolmeOsaline = () => {
   const [widthLeft, setWidthLeft] = useState(1000);
   const [widthCenter, setWidthCenter] = useState(1000);
@@ -261,7 +262,7 @@ export const KolmeOsaline = () => {
           setWidthCenter(center);
           setWidthRight(newRightWidth);
         }} style={{ top: -49, left: "50%" }} />
-        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%", background }} />
+        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
       <Input name="width" value={total} label="Laius" setValue={(newWidth) => {
         const total = widthLeft + widthCenter + widthRight;
@@ -269,7 +270,7 @@ export const KolmeOsaline = () => {
         setWidthLeft(getPercentage(widthLeft) * newWidth);
         setWidthCenter(getPercentage(widthCenter) * newWidth);
         setWidthRight(getPercentage(widthRight) * newWidth);
-      }} style={{ bottom: -92, left: "50%", background }} />
+      }} style={{ bottom: -92, left: "50%" }} />
     </div>
   );
 };
