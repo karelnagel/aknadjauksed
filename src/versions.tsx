@@ -262,9 +262,9 @@ export const KolmeOsaline = () => {
           setWidthCenter(center);
           setWidthRight(newRightWidth);
         }} style={{ top: -49, left: "50%" }} />
-        <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+        <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" value={total} label="Laius" setValue={(newWidth) => {
+      <Input name="width" yellow value={total} label="Laius" setValue={(newWidth) => {
         const total = widthLeft + widthCenter + widthRight;
         const getPercentage = (width: number) => width && total ? width / total : 1 / 3;
         setWidthLeft(getPercentage(widthLeft) * newWidth);
