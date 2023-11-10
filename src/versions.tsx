@@ -114,7 +114,7 @@ const Panel = ({
   );
 };
 
-const numberToString = (value: number) => value ? Number.isInteger(value) ? value.toString() : value.toFixed(2) : "";
+const numberToString = (value: number) => value ? value.toFixed(0) : "";
 const Input = ({
   value,
   setValue,
@@ -233,17 +233,27 @@ export const KolmeOsaline = () => {
     <div style={{ position: "relative", display: "flex" }}>
       <Panel openingInputName="opening-left" width={widthLeft} height={height} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={(newLeftWidth) => {
+          const total = widthLeft + widthCenter + widthRight;
           setWidthLeft(newLeftWidth);
+          setWidthCenter((widthCenter / (widthCenter + widthRight)) * (total - newLeftWidth));
+          setWidthRight((widthRight / (widthCenter + widthRight)) * (total - newLeftWidth));
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-center" width={widthCenter} height={height} scale={scale}>
         <Input name="width-center" value={widthCenter} label="Laius" setValue={(newCenterWidth) => {
+          const total = widthLeft + widthCenter + widthRight;
           setWidthCenter(newCenterWidth);
+          setWidthLeft((widthLeft / (widthLeft + widthRight)) * (total - newCenterWidth));
+          setWidthRight((widthRight / (widthLeft + widthRight)) * (total - newCenterWidth));
         }} style={{ top: -49, left: "50%" }} />
       </Panel>
       <Panel openingInputName="opening-right" width={widthRight} height={height} scale={scale}>
         <Input name="width-right" value={widthRight} label="Laius" setValue={(newRightWidth) => {
+          const total = widthLeft + widthCenter + widthRight;
           setWidthRight(newRightWidth);
+          setWidthLeft((widthLeft / (widthLeft + widthCenter)) * (total - newRightWidth));
+          setWidthCenter((widthCenter / (widthLeft + widthCenter)) * (total - newRightWidth));
+
         }} style={{ top: -49, left: "50%" }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
