@@ -63,21 +63,23 @@ const colors = {
 const WIDTH = 800;
 
 const Opening = ({ openingInputName }: { openingInputName: string }) => {
-  const opening = useInputValue(openingInputName)
-  return <>
-    <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
-      {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("справа")) && (
-        <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />
-      )}
-      {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("слева")) && (
-        <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />
-      )}
-      {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
-        <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
-      )}
-    </svg>
-  </>
-}
+  const opening = useInputValue(openingInputName);
+  return (
+    <>
+      <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
+        {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("справа")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />
+        )}
+        {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("слева")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />
+        )}
+        {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
+        )}
+      </svg>
+    </>
+  );
+};
 
 const Panel = ({
   openingInputName,
@@ -114,7 +116,7 @@ const Panel = ({
   );
 };
 
-const numberToString = (value: number) => value ? value.toFixed(0) : "";
+const numberToString = (value: number) => (value ? value.toFixed(0) : "");
 const Input = ({
   value,
   setValue,
@@ -137,13 +139,15 @@ const Input = ({
   const [val, setVal] = useState(numberToString(value));
   const delayedSetValue = (val: number) => {
     if (timeoutId) clearTimeout(timeoutId);
-    setTimeoutId(setTimeout(() => {
-      setValue(val)
-    }, 1000));
+    setTimeoutId(
+      setTimeout(() => {
+        setValue(val);
+      }, 1000)
+    );
   };
   useEffect(() => {
-    setVal(numberToString(value))
-  }, [value])
+    setVal(numberToString(value));
+  }, [value]);
 
   return (
     <label
@@ -152,8 +156,8 @@ const Input = ({
         flexDirection: "column",
         alignItems: "center",
         position: "absolute",
-        width: 60,
-        transform: `translate(${style.left || style.right ? "-50%" : "0"}, ${style.top || style.bottom ? "-50%" : "0"})`,
+        width: 80,
+        // transform: `translate(${style.left || style.right ? "-50%" : "0"}, ${style.top || style.bottom ? "-50%" : "0"})`,
         gap: 3,
         ...style,
       }}
@@ -165,8 +169,8 @@ const Input = ({
         type="number"
         value={val}
         onChange={(e) => {
-          setVal(e.target.value)
-          delayedSetValue(Number(e.target.value))
+          setVal(e.target.value);
+          delayedSetValue(Number(e.target.value));
         }}
         style={{ width: "100%", background: yellow ? "#fff87a" : undefined }}
       />
@@ -186,7 +190,7 @@ const useScale = (heights: number[], widths: number[]) => {
   return Math.min(HEIGHT / height, maxWidth / width);
 };
 
-export const UheOsaline = ({ w = 1000, h = 1000, opening = "window-opening" }: { w?: number; h?: number, opening?: string }) => {
+export const UheOsaline = ({ w = 1000, h = 1000, opening = "window-opening" }: { w?: number; h?: number; opening?: string }) => {
   const [width, setWidth] = useState(w);
   const [height, setHeight] = useState(h);
   const scale = useScale([height], [width]);
@@ -228,43 +232,68 @@ export const KolmeOsaline = () => {
   const [widthRight, setWidthRight] = useState(1000);
   const [height, setHeight] = useState(1000);
 
-  const total = (widthLeft + widthCenter + widthRight) || 0
+  const total = widthLeft + widthCenter + widthRight || 0;
   const scale = useScale([height], [total]);
 
   return (
     <div style={{ position: "relative", display: "flex" }}>
       <Panel openingInputName="opening-left" width={widthLeft} height={height} scale={scale}>
-        <Input name="width-left" value={widthLeft} label="Laius" setValue={(value) => {
-          const newLeftWidth = Math.min(value, total - 2)
-          const center = total - newLeftWidth - widthRight
-          setWidthLeft(newLeftWidth);
-          setWidthCenter(center);
-        }} style={{ top: -49, left: "50%" }} />
+        <Input
+          name="width-left"
+          value={widthLeft}
+          label="Laius"
+          setValue={(value) => {
+            const newLeftWidth = Math.min(value, total - 2);
+            const center = total - newLeftWidth - widthRight;
+            setWidthLeft(newLeftWidth);
+            setWidthCenter(center);
+          }}
+          style={{ bottom: `100%`, left: "50%" }}
+        />
       </Panel>
       <Panel openingInputName="opening-center" width={widthCenter} height={height} scale={scale}>
-        <Input name="width-center" value={widthCenter} label="Laius" setValue={(value) => {
-          const newCenterWidth = Math.min(value, total - 2)
-          const right = total - newCenterWidth - widthLeft
-          setWidthCenter(newCenterWidth);
-          setWidthRight(right);
-        }} style={{ top: -49, left: "50%" }} />
+        <Input
+          name="width-center"
+          value={widthCenter}
+          label="Laius"
+          setValue={(value) => {
+            const newCenterWidth = Math.min(value, total - 2);
+            const right = total - newCenterWidth - widthLeft;
+            setWidthCenter(newCenterWidth);
+            setWidthRight(right);
+          }}
+          style={{ bottom: "100%", left: "50%" }}
+        />
       </Panel>
       <Panel openingInputName="opening-right" width={widthRight} height={height} scale={scale}>
-        <Input name="width-right" value={widthRight} label="Laius" setValue={(value) => {
-          const newRightWidth = Math.min(value, total - 2)
-          const left = total - newRightWidth - widthCenter
-          setWidthRight(newRightWidth);
-          setWidthLeft(left);
-        }} style={{ top: -49, left: "50%" }} />
+        <Input
+          name="width-right"
+          value={widthRight}
+          label="Laius"
+          setValue={(value) => {
+            const newRightWidth = Math.min(value, total - 2);
+            const left = total - newRightWidth - widthCenter;
+            setWidthRight(newRightWidth);
+            setWidthLeft(left);
+          }}
+          style={{ bottom: `100%`, left: "50%" }}
+        />
         <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
       </Panel>
-      <Input name="width" yellow value={total} label="Laius" setValue={(newWidth) => {
-        const total = widthLeft + widthCenter + widthRight;
-        const getPercentage = (width: number) => width && total ? width / total : 1 / 3;
-        setWidthLeft(getPercentage(widthLeft) * newWidth);
-        setWidthCenter(getPercentage(widthCenter) * newWidth);
-        setWidthRight(getPercentage(widthRight) * newWidth);
-      }} style={{ bottom: -92, left: "50%" }} />
+      <Input
+        name="width"
+        yellow
+        value={total}
+        label="Laius"
+        setValue={(newWidth) => {
+          const total = widthLeft + widthCenter + widthRight;
+          const getPercentage = (width: number) => (width && total ? width / total : 1 / 3);
+          setWidthLeft(getPercentage(widthLeft) * newWidth);
+          setWidthCenter(getPercentage(widthCenter) * newWidth);
+          setWidthRight(getPercentage(widthRight) * newWidth);
+        }}
+        style={{ top: `100%`, left: "50%" }}
+      />
     </div>
   );
 };
@@ -362,12 +391,14 @@ export const RoduPoolKlaas = () => {
 };
 
 export const Rodu = () => {
-  return <div style={{ position: "relative" }}>
-    <UheOsaline h={2000} opening={"not needed"} />
-    <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
-      <Opening openingInputName="window-opening" />
+  return (
+    <div style={{ position: "relative" }}>
+      <UheOsaline h={2000} opening={"not needed"} />
+      <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
+        <Opening openingInputName="window-opening" />
+      </div>
     </div>
-  </div >
+  );
 };
 
 export const UksPlussKaks = () => {
@@ -447,7 +478,7 @@ export const ParemalAknaga = () => {
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -120, left: "50%" }} />
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ top: "50%", left: -60 }} />
         </Panel>
-        <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
+        <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
@@ -528,7 +559,7 @@ export const RoduPoolKlaasAknaga = () => {
           <Input name="door-bottom-height" value={heightDoorBottom} label="Height" setValue={setHeightDoorBottom} style={{ top: "50%", left: -60 }} />
         </Panel>
         <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ bottom: -90, left: "50%" }} />
-        <div style={{ position: "absolute", width: "100%", height: '100%', top: 0, left: 0 }}>
+        <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
