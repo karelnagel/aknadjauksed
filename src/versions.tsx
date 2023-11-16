@@ -242,8 +242,8 @@ const useMultipleValues = (initialValues: number[]) => {
     const oldestEditId = values.findIndex((v, i) => i !== index && i !== lastEdit);
     const lastEditId = values.findIndex((v, i) => i !== index && i !== oldestEditId);
 
-    const oldestValue = total - value - values[lastEditId];
-    setOneValue(oldestValue, oldestEditId);
+    const newOldestValue = total - value - values[lastEditId];
+    setOneValue(newOldestValue, oldestEditId);
     setLastEdit(lastEditId);
   };
   const setTotal = (newTotal: number) => {
