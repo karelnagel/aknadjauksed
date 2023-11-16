@@ -275,7 +275,7 @@ export const KolmeOsaline = () => {
           }}
           style={{ bottom: `100%`, left: "50%" }}
         />
-        <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ right: -120, top: "50%" }} />
+        <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ left: `100%`, top: "50%" }} />
       </Panel>
       <Input
         name="width"
