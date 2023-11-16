@@ -164,7 +164,7 @@ const Input = ({
         background: yellow ? "#fff87a" : undefined,
         position: "absolute",
         width: 80,
-        padding: 0,
+        padding: `0 5px`,
         margin: 0,
         transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
           style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
