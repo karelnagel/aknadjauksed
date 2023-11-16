@@ -76,7 +76,7 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
         {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
           <path fill="none" stroke="black" strokeWidth="1" d="M0,100 L50,0 L100,100" />
         )}
-        {(opening?.toLocaleLowerCase().includes("mitteavatav") || opening?.toLocaleLowerCase().includes("Неоткрываемое".toLowerCase())) ||true&& (
+        {(opening?.toLocaleLowerCase().includes("mitteavatav") || opening?.toLocaleLowerCase().includes("Неоткрываемое".toLowerCase()))&& (
           <g stroke="black" strokeWidth="1">
             <line x1="25" y1="25" x2="75" y2="75" />
             <line x1="75" y1="25" x2="25" y2="75" />
