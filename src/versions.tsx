@@ -150,26 +150,28 @@ const Input = ({
   }, [value]);
 
   return (
-      <input
-        name={name}
-        min={min}
-        max={max}
-        type="number"
-        value={val}
-        onChange={(e) => {
-          setVal(e.target.value);
-          delayedSetValue(Number(e.target.value));
-        }}
-        style={{
-          background: yellow ? "#fff87a" : undefined,
-          position: "absolute",
-          width: 80,
-          transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
-            style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
-          })`,
-          ...style,
-        }}
-      />
+    <input
+      name={name}
+      min={min}
+      max={max}
+      type="number"
+      value={val}
+      onChange={(e) => {
+        setVal(e.target.value);
+        delayedSetValue(Number(e.target.value));
+      }}
+      style={{
+        background: yellow ? "#fff87a" : undefined,
+        position: "absolute",
+        width: 80,
+        padding: 0,
+        margin: 0,
+        transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
+          style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
+        })`,
+        ...style,
+      }}
+    />
   );
 };
 
