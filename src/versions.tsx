@@ -230,21 +230,22 @@ export const KaheOsaline = () => {
 const useMultipleValues = (initialValues: number[]) => {
   const [values, setValues] = useState(initialValues);
   const [lastEdit, setLastEdit] = useState<number | null>(null);
-  const setOneValue = (newValue: number, index: number) => {
-    const newValues = [...values];
-    newValues[index] = newValue;
-    setValues(newValues);
-  };
   const set = (newValue: number, index: number) => {
-    const total = values.reduce((a, b) => a + b, 0);
-    const oldValue = values[index];
-    const value = Math.min(newValue, total - 2);
-    setOneValue(value, index);
     const oldestEditId = values.findIndex((_, i) => i !== index && i !== lastEdit);
     const lastEditId = values.findIndex((_, i) => i !== index && i !== oldestEditId);
 
+    const total = values.reduce((a, b) => a + b, 0);
+    const oldValue = values[index];
+    const value = Math.min(newValue, total - 2);
     const newOldestValue = values[oldestEditId] - (value - oldValue);
-    setOneValue(newOldestValue, oldestEditId);
+
+    setValues(
+      values.map((val, i) => {
+        if (i === oldestEditId) return newOldestValue;
+        if (i === lastEditId) return value;
+        return val;
+      })
+    );
     setLastEdit(lastEditId);
   };
   const setTotal = (newTotal: number) => {
