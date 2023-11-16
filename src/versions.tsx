@@ -76,6 +76,12 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
         {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
           <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
         )}
+        {(opening?.toLocaleLowerCase().includes("mitteavatav") || opening?.toLocaleLowerCase().includes("Неоткрываемое".toLowerCase())) && (
+          <g stroke="black" strokeWidth="1">
+            <line x1="0" y1="25" x2="100" y2="25" />
+            <line x1="50" y1="0" x2="50" y2="50" />
+          </g>
+        )}
       </svg>
     </>
   );
