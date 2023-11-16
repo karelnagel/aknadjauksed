@@ -232,7 +232,8 @@ const useMultipleValues = (initialValues: number[]) => {
   const [lastEdit, setLastEdit] = useState<number | null>(null);
   const set = (newValue: number, index: number) => {
     const oldestEditId = values.findIndex((_, i) => i !== index && i !== lastEdit);
-    const lastEditId = values.findIndex((_, i) => i !== index && i !== oldestEditId);
+    let lastEditId = values.findIndex((_, i) => i !== index && i !== oldestEditId);
+    if (lastEditId === -1) lastEditId = oldestEditId;
 
     const oldValue = values[index];
     const newOldestValue = values[oldestEditId] - (newValue - oldValue);
@@ -240,11 +241,11 @@ const useMultipleValues = (initialValues: number[]) => {
     setValues(
       values.map((val, i) => {
         if (i === oldestEditId) return newOldestValue;
-        if (i === lastEditId) return newValue;
+        if (i === index) return newValue;
         return val;
       })
     );
-    setLastEdit(lastEditId);
+    setLastEdit(index);
   };
   const setTotal = (newTotal: number) => {
     const getPercentage = (width: number) => (width && total ? width / total : 1 / values.length);
