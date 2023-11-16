@@ -82,8 +82,8 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
 };
 
 const BORDER_WIDTH = 22;
-const POSITION = `calc(100% + ${BORDER_WIDTH}px + 10px)`;
-const POSITION_WITHOUT_BORDER = `calc(100% + 10px)`;
+const POSITION = `calc(100% + ${BORDER_WIDTH}px + 7px)`;
+const POSITION_WITHOUT_BORDER = `calc(100% + 7px)`;
 const Panel = ({
   openingInputName,
   width,
@@ -110,6 +110,7 @@ const Panel = ({
         width: width > 0 ? width * scale : 0,
         height: height > 0 ? height * scale : 0,
         position: "relative",
+        textAlign: "center",
         transitionDuration: "1s",
       }}
     >
