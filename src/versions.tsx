@@ -244,6 +244,7 @@ const useMultipleValues = (initialValues: number[]) => {
 
     const oldestValue = total - value - values[lastEditId];
     setOneValue(oldestValue, oldestEditId);
+    setLastEdit(lastEditId);
   };
   const setTotal = (newTotal: number) => {
     const getPercentage = (width: number) => (width && total ? width / total : 1 / values.length);
