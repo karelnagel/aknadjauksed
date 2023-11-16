@@ -150,20 +150,6 @@ const Input = ({
   }, [value]);
 
   return (
-    <label
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        position: "absolute",
-        width: 80,
-        transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
-          style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
-        })`,
-        gap: 3,
-        ...style,
-      }}
-    >
       <input
         name={name}
         min={min}
@@ -174,9 +160,16 @@ const Input = ({
           setVal(e.target.value);
           delayedSetValue(Number(e.target.value));
         }}
-        style={{ width: "100%", background: yellow ? "#fff87a" : undefined }}
+        style={{
+          background: yellow ? "#fff87a" : undefined,
+          position: "absolute",
+          width: 80,
+          transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
+            style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
+          })`,
+          ...style,
+        }}
       />
-    </label>
   );
 };
 
