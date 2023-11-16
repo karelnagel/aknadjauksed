@@ -157,7 +157,9 @@ const Input = ({
         alignItems: "center",
         position: "absolute",
         width: 80,
-        // transform: `translate(${style.left || style.right ? "-50%" : "0"}, ${style.top || style.bottom ? "-50%" : "0"})`,
+        transform: `translate(${style.left === "50%" || style.right === "50%" ? "-50%" : "0"}, ${
+          style.top === "50%" || style.bottom === "50%" ? "-50%" : "0"
+        })`,
         gap: 3,
         ...style,
       }}
