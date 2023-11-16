@@ -227,13 +227,41 @@ export const KaheOsaline = () => {
   );
 };
 
+const useMultipleValues = (initialValues: number[]) => {
+  const [values, setValues] = useState(initialValues);
+  const [lastEdit, setLastEdit] = useState<number | null>(null);
+  const setOneValue = (newValue: number, index: number) => {
+    const newValues = [...values];
+    newValues[index] = newValue;
+    setValues(newValues);
+  };
+  const total = values.reduce((a, b) => a + b, 0);
+  const set = (newValue: number, index: number) => {
+    const value = Math.min(newValue, total - 2);
+    setOneValue(value, index);
+    const oldestEditId = values.findIndex((v, i) => i !== index && i !== lastEdit);
+    const lastEditId = values.findIndex((v, i) => i !== index && i !== oldestEditId);
+
+    const oldestValue = total - value - values[lastEditId];
+    setOneValue(oldestValue, oldestEditId);
+  };
+  const setTotal = (newTotal: number) => {
+    const getPercentage = (width: number) => (width && total ? width / total : 1 / values.length);
+    const newValues = values.map((value) => getPercentage(value) * newTotal);
+    setValues(newValues);
+  };
+  return { values, set, total, setTotal };
+};
+
 export const KolmeOsaline = () => {
-  const [widthLeft, setWidthLeft] = useState(1000);
-  const [widthCenter, setWidthCenter] = useState(1000);
-  const [widthRight, setWidthRight] = useState(1000);
+  const {
+    values: [widthLeft, widthCenter, widthRight],
+    set,
+    setTotal,
+    total,
+  } = useMultipleValues([1000, 1000, 1000]);
   const [height, setHeight] = useState(1000);
 
-  const total = widthLeft + widthCenter + widthRight || 0;
   const scale = useScale([height], [total]);
 
   return (
@@ -244,10 +272,7 @@ export const KolmeOsaline = () => {
           value={widthLeft}
           label="Laius"
           setValue={(value) => {
-            const newLeftWidth = Math.min(value, total - 2);
-            const center = total - newLeftWidth - widthRight;
-            setWidthLeft(newLeftWidth);
-            setWidthCenter(center);
+            set(value, 0);
           }}
           style={{ bottom: POSITION, left: "50%" }}
         />
@@ -258,10 +283,7 @@ export const KolmeOsaline = () => {
           value={widthCenter}
           label="Laius"
           setValue={(value) => {
-            const newCenterWidth = Math.min(value, total - 2);
-            const right = total - newCenterWidth - widthLeft;
-            setWidthCenter(newCenterWidth);
-            setWidthRight(right);
+            set(value, 1);
           }}
           style={{ bottom: POSITION, left: "50%" }}
         />
@@ -272,10 +294,7 @@ export const KolmeOsaline = () => {
           value={widthRight}
           label="Laius"
           setValue={(value) => {
-            const newRightWidth = Math.min(value, total - 2);
-            const left = total - newRightWidth - widthCenter;
-            setWidthRight(newRightWidth);
-            setWidthLeft(left);
+            set(value, 2);
           }}
           style={{ bottom: POSITION, left: "50%" }}
         />
@@ -287,11 +306,7 @@ export const KolmeOsaline = () => {
         value={total}
         label="Laius"
         setValue={(newWidth) => {
-          const total = widthLeft + widthCenter + widthRight;
-          const getPercentage = (width: number) => (width && total ? width / total : 1 / 3);
-          setWidthLeft(getPercentage(widthLeft) * newWidth);
-          setWidthCenter(getPercentage(widthCenter) * newWidth);
-          setWidthRight(getPercentage(widthRight) * newWidth);
+          setTotal(newWidth);
         }}
         style={{ top: POSITION_WITHOUT_BORDER, left: "50%" }}
       />
