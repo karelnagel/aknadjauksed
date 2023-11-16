@@ -237,13 +237,13 @@ const useMultipleValues = (initialValues: number[]) => {
   };
   const total = values.reduce((a, b) => a + b, 0);
   const set = (newValue: number, index: number) => {
-    const total = values.reduce((a, b) => a + b, 0);
+    const oldValue = values[index];
     const value = Math.min(newValue, total - 2);
     setOneValue(value, index);
     const oldestEditId = values.findIndex((_, i) => i !== index && i !== lastEdit);
     const lastEditId = values.findIndex((_, i) => i !== index && i !== oldestEditId);
 
-    const newOldestValue = total - value - values[lastEditId];
+    const newOldestValue = values[oldestEditId] - (value - oldValue);
     setOneValue(newOldestValue, oldestEditId);
     setLastEdit(lastEditId);
   };
