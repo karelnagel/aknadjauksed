@@ -235,8 +235,8 @@ const useMultipleValues = (initialValues: number[]) => {
     newValues[index] = newValue;
     setValues(newValues);
   };
-  const total = values.reduce((a, b) => a + b, 0);
   const set = (newValue: number, index: number) => {
+    const total = values.reduce((a, b) => a + b, 0);
     const oldValue = values[index];
     const value = Math.min(newValue, total - 2);
     setOneValue(value, index);
@@ -252,6 +252,8 @@ const useMultipleValues = (initialValues: number[]) => {
     const newValues = values.map((value) => getPercentage(value) * newTotal);
     setValues(newValues);
   };
+  const total = values.reduce((a, b) => a + b, 0);
+
   return { values, set, total, setTotal };
 };
 
