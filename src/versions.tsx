@@ -81,6 +81,9 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
   );
 };
 
+const BORDER_WIDTH = 22;
+const POSITION = `calc(100% + ${BORDER_WIDTH}px + 10px)`;
+const POSITION_WITHOUT_BORDER = `calc(100% + 10px)`;
 const Panel = ({
   openingInputName,
   width,
@@ -102,7 +105,7 @@ const Panel = ({
   return (
     <div
       style={{
-        border: `22px solid ${color}`,
+        border: `${BORDER_WIDTH}px solid ${color}`,
         background: filled ? color : "#adecff",
         width: width > 0 ? width * scale : 0,
         height: height > 0 ? height * scale : 0,
@@ -245,7 +248,7 @@ export const KolmeOsaline = () => {
             setWidthLeft(newLeftWidth);
             setWidthCenter(center);
           }}
-          style={{ bottom: `100%`, left: "50%" }}
+          style={{ bottom: POSITION, left: "50%" }}
         />
       </Panel>
       <Panel openingInputName="opening-center" width={widthCenter} height={height} scale={scale}>
@@ -259,7 +262,7 @@ export const KolmeOsaline = () => {
             setWidthCenter(newCenterWidth);
             setWidthRight(right);
           }}
-          style={{ bottom: "100%", left: "50%" }}
+          style={{ bottom: POSITION, left: "50%" }}
         />
       </Panel>
       <Panel openingInputName="opening-right" width={widthRight} height={height} scale={scale}>
@@ -273,9 +276,9 @@ export const KolmeOsaline = () => {
             setWidthRight(newRightWidth);
             setWidthLeft(left);
           }}
-          style={{ bottom: `100%`, left: "50%" }}
+          style={{ bottom: POSITION, left: "50%" }}
         />
-        <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ left: `100%`, top: "50%" }} />
+        <Input name="height" value={height} yellow label="Korgus" setValue={setHeight} style={{ left: POSITION, top: "50%" }} />
       </Panel>
       <Input
         name="width"
@@ -289,7 +292,7 @@ export const KolmeOsaline = () => {
           setWidthCenter(getPercentage(widthCenter) * newWidth);
           setWidthRight(getPercentage(widthRight) * newWidth);
         }}
-        style={{ top: `100%`, left: "50%" }}
+        style={{ top: POSITION_WITHOUT_BORDER, left: "50%" }}
       />
     </div>
   );
