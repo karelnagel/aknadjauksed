@@ -66,20 +66,20 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
   const opening = useInputValue(openingInputName);
   return (
     <>
-      <svg viewBox="0 0 100 50" width="100%" height="100%" preserveAspectRatio="none">
+      <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="none">
         {(opening?.toLocaleLowerCase().includes("paremalt") || opening?.toLocaleLowerCase().includes("справа")) && (
-          <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,25 L100,50" />
+          <path fill="none" stroke="black" strokeWidth="1" d="M100,0 L0,50 L100,100" />
         )}
         {(opening?.toLocaleLowerCase().includes("vasakult") || opening?.toLocaleLowerCase().includes("слева")) && (
-          <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,25 L0,50" />
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,0 L100,50 L0,100" />
         )}
         {(opening?.toLocaleLowerCase().includes("ülevalt") || opening?.toLocaleLowerCase().includes("сверху")) && (
-          <path fill="none" stroke="black" strokeWidth="1" d="M0,50 L50,0 L100,50" />
+          <path fill="none" stroke="black" strokeWidth="1" d="M0,100 L50,0 L100,100" />
         )}
-        {(opening?.toLocaleLowerCase().includes("mitteavatav") || opening?.toLocaleLowerCase().includes("Неоткрываемое".toLowerCase())) && (
+        {(opening?.toLocaleLowerCase().includes("mitteavatav") || opening?.toLocaleLowerCase().includes("Неоткрываемое".toLowerCase())) ||true&& (
           <g stroke="black" strokeWidth="1">
-            <line x1="0" y1="25" x2="100" y2="25" />
-            <line x1="50" y1="0" x2="50" y2="50" />
+            <line x1="25" y1="25" x2="75" y2="75" />
+            <line x1="75" y1="25" x2="25" y2="75" />
           </g>
         )}
       </svg>
