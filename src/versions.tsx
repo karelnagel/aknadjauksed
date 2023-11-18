@@ -398,33 +398,35 @@ export const Rodu = () => {
 };
 
 export const UksPlussKaks = () => {
-  const [height, setHeight] = useState(2800);
-  const [width, setWidth] = useState(2000);
-  const [heightTop, setHeightTop] = useState(800);
-  const [heightBottom, setHeightBottom] = useState(2000);
-  const [widthLeft, setWidthLeft] = useState(1000);
-  const [widthRight, setWidthRight] = useState(1000);
+  const {
+    values: [widthLeft, widthRight],
+    set: setWidth,
+    setTotal: setTotalWidth,
+    total: width,
+  } = useMultipleValues([1000, 1000]);
+  const {
+    values: [heightTop, heightBottom],
+    set: setHeight,
+    setTotal: setTotalHeight,
+    total: height,
+  } = useMultipleValues([800, 2000]);
   const scale = useScale([height], [width]);
-  const actualWidthLeft = (widthLeft / (widthLeft + widthRight)) * width;
-  const actualWidthRight = (widthRight / (widthLeft + widthRight)) * width;
-  const actualHeightTop = (heightTop / (heightTop + heightBottom)) * height;
-  const actualHeightBottom = (heightBottom / (heightTop + heightBottom)) * height;
   return (
     <div style={{ position: "relative" }}>
-      <Panel openingInputName="opening-top" width={width} height={actualHeightTop} scale={scale}>
-        <Input name="height-top" value={heightTop} setValue={setHeightTop} style={{ left: POSITION, top: P50 }} />
+      <Panel openingInputName="opening-top" width={width} height={heightTop} scale={scale}>
+        <Input name="height-top" value={heightTop} setValue={(v) => setHeight(v, 0)} style={{ left: POSITION, top: P50 }} />
       </Panel>
       <div style={{ display: "flex" }}>
-        <Panel openingInputName="opening-left" width={actualWidthLeft} height={actualHeightBottom} scale={scale}>
-          <Input name="width-left" value={widthLeft} setValue={setWidthLeft} style={{ top: POSITION, left: P50 }} />
+        <Panel openingInputName="opening-left" width={widthLeft} height={heightBottom} scale={scale}>
+          <Input name="width-left" value={widthLeft} setValue={(v) => setWidth(v, 0)} style={{ top: POSITION, left: P50 }} />
         </Panel>
-        <Panel openingInputName="opening-right" width={actualWidthRight} height={actualHeightBottom} scale={scale}>
-          <Input name="width-right" value={widthRight} setValue={setWidthRight} style={{ top: POSITION, left: P50 }} />
-          <Input name="height-bottom" value={heightBottom} setValue={setHeightBottom} style={{ left: POSITION, top: P50 }} />
+        <Panel openingInputName="opening-right" width={widthRight} height={heightBottom} scale={scale}>
+          <Input name="width-right" value={widthRight} setValue={(v) => setWidth(v, 1)} style={{ top: POSITION, left: P50 }} />
+          <Input name="height-bottom" value={heightBottom} setValue={(v) => setHeight(v, 1)} style={{ left: POSITION, top: P50 }} />
         </Panel>
       </div>
-      <Input name="height" yellow value={height} setValue={setHeight} style={{ right: POSITION, top: P50 }} />
-      <Input name="width" yellow value={width} setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
+      <Input name="height" yellow value={height} setValue={setTotalHeight} style={{ right: POSITION, top: P50 }} />
+      <Input name="width" yellow value={width} setValue={setTotalWidth} style={{ bottom: POSITION, left: P50 }} />
     </div>
   );
 };
@@ -458,31 +460,32 @@ export const UksPlussKaks = () => {
 // };
 
 export const ParemalAknaga = () => {
-  const [width, setWidth] = useState(2000);
-  const [doorWidth, setDoorWidth] = useState(1000);
+  const {
+    values: [windowWidth, doorWidth],
+    set: setWidth,
+    setTotal: setTotalWidth,
+    total: width,
+  } = useMultipleValues([1000, 1000]);
   const [doorHeight, setDoorHeight] = useState(2000);
-  const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight], [width]);
 
-  const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
-  const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <div style={{ position: "relative" }}>
-        <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
-          <Input name="door-width" value={doorWidth} setValue={setDoorWidth} style={{ top: POSITION, left: P50 }} />
+        <Panel width={doorWidth} height={doorHeight} scale={scale}>
+          <Input name="door-width" value={doorWidth} setValue={(v) => setWidth(v, 1)} style={{ top: POSITION, left: P50 }} />
           <Input name="door-height" value={doorHeight} setValue={setDoorHeight} style={{ right: POSITION, top: P50 }} />
         </Panel>
         <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
-      <Panel openingInputName="window-opening" width={realWindowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} setValue={setWindowWidth} style={{ top: POSITION, left: P50 }} />
+      <Panel openingInputName="window-opening" width={windowWidth} height={windowHeight} scale={scale}>
+        <Input name="window-width" value={windowWidth} setValue={(v) => setWidth(v, 0)} style={{ top: POSITION, left: P50 }} />
         <Input name="window-height" max={doorHeight} value={windowHeight} setValue={setWindowHeight} style={{ left: POSITION, top: P50 }} />
       </Panel>
-      <Input name="window" yellow value={width} setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
+      <Input name="window" yellow value={width} setValue={setTotalWidth} style={{ bottom: POSITION, left: P50 }} />
     </div>
   );
 };
@@ -534,35 +537,36 @@ export const ParemalAknaga = () => {
 // };
 
 export const RoduPoolKlaasAknaga = () => {
-  const [width, setWidth] = useState(2000);
-  const [doorWidth, setDoorWidth] = useState(1000);
+  const {
+    values: [widthDoor, widthWindow],
+    set: setWidth,
+    setTotal: setTotalWidth,
+    total: width,
+  } = useMultipleValues([1000, 1000]);
   const [doorHeight, setDoorHeight] = useState(1000);
   const [heightDoorBottom, setHeightDoorBottom] = useState(1000);
-  const [windowWidth, setWindowWidth] = useState(1000);
   const [windowHeight, setWindowHeight] = useState(1000);
   const scale = useScale([doorHeight, heightDoorBottom], [width]);
-  const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
-  const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
 
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <div style={{ position: "relative" }}>
-        <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
+        <Panel width={widthDoor} height={doorHeight} scale={scale}>
           <Input name="door-height" value={doorHeight} setValue={setDoorHeight} style={{ right: POSITION, top: P50 }} />
         </Panel>
-        <Panel width={realDoorWidth} height={heightDoorBottom} scale={scale} filled>
+        <Panel width={widthDoor} height={heightDoorBottom} scale={scale} filled>
           <Input name="door-bottom-height" value={heightDoorBottom} setValue={setHeightDoorBottom} style={{ right: POSITION, top: P50 }} />
         </Panel>
-        <Input name="door-width" value={doorWidth} setValue={setDoorWidth} style={{ top: POSITION, left: P50 }} />
+        <Input name="door-width" value={widthDoor} setValue={(v) => setWidth(v, 0)} style={{ top: POSITION, left: P50 }} />
         <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
           <Opening openingInputName="door-opening" />
         </div>
       </div>
-      <Panel openingInputName="window-opening" width={realWindowWidth} height={windowHeight} scale={scale}>
-        <Input name="window-width" value={windowWidth} setValue={setWindowWidth} style={{ top: POSITION, left: P50 }} />
+      <Panel openingInputName="window-opening" width={widthWindow} height={windowHeight} scale={scale}>
+        <Input name="window-width" value={widthWindow} setValue={(v) => setWidth(v, 1)} style={{ top: POSITION, left: P50 }} />
         <Input name="window-height" max={doorHeight} value={windowHeight} setValue={setWindowHeight} style={{ left: POSITION, top: P50 }} />
       </Panel>
-      <Input name="width" yellow value={width} setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
+      <Input name="width" yellow value={width} setValue={setTotalWidth} style={{ bottom: POSITION, left: P50 }} />
     </div>
   );
 };
