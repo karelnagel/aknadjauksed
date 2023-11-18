@@ -2,13 +2,13 @@ import {
   UheOsaline,
   KaheOsaline,
   KolmeOsaline,
-  AknadMolemalPool,
+  // AknadMolemalPool,
   RoduPoolKlaas,
   Rodu,
   UksPlussKaks,
   ParemalAknaga,
   NeljaOsaline,
-  RoduPoolKlaasAknadMolemalPool,
+  // RoduPoolKlaasAknadMolemalPool,
   RoduPoolKlaasAknaga,
 } from "./versions";
 import { HEIGHT, Variant } from "./store";
@@ -20,8 +20,8 @@ const ShowVariant = ({ variant }: { variant: Variant }): JSX.Element => {
       return <KaheOsaline />;
     case "kolme_osaline":
       return <KolmeOsaline />;
-    case "aknad_molemal_pool":
-      return <AknadMolemalPool />;
+    // case "aknad_molemal_pool":
+    //   return <AknadMolemalPool />;
     case "rodu_pool_klaas":
       return <RoduPoolKlaas />;
     case "rodu":
@@ -30,12 +30,12 @@ const ShowVariant = ({ variant }: { variant: Variant }): JSX.Element => {
       return <UksPlussKaks />;
     case "nelja_osaline":
       return <NeljaOsaline />;
-    case "roduuks_poolklaas_aknad_molemal_pool":
-      return <RoduPoolKlaasAknadMolemalPool />;
+    // case "roduuks_poolklaas_aknad_molemal_pool":
+    //   return <RoduPoolKlaasAknadMolemalPool />;
     case "roduuks_poolklaas_aknaga":
       return <RoduPoolKlaasAknaga />;
-    case "roduuks_taisklaas_aknad_molemal_pool":
-      return <AknadMolemalPool />;
+    // case "roduuks_taisklaas_aknad_molemal_pool":
+    //   return <AknadMolemalPool />;
     case "roduuks_taisklaas_aknaga":
       return <ParemalAknaga />;
     case "terassiuks_valisuks_poolklaas":
