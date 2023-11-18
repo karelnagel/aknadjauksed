@@ -357,26 +357,27 @@ export const NeljaOsaline = () => {
 // };
 
 export const RoduPoolKlaas = () => {
+  const {
+    values: [heightTop, heightBottom],
+    set,
+    setTotal,
+    total: height,
+  } = useMultipleValues([1000, 1000]);
   const [width, setWidth] = useState(1000);
-  const [height, setHeight] = useState(2000);
-  const [heightTop, setHeightTop] = useState(1000);
-  const [heightBottom, setHeightBottom] = useState(1000);
   const scale = useScale([height], [width]);
-  const realTopHeight = (heightTop / (heightTop + heightBottom)) * height;
-  const realBottomHeight = (heightBottom / (heightTop + heightBottom)) * height;
   return (
     <div style={{ position: "relative" }}>
-      <Panel width={width} height={realTopHeight} scale={scale}>
+      <Panel width={width} height={heightTop} scale={scale}>
         <Input name="width" yellow value={width} setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
-        <Input name="height-top" value={heightTop} setValue={setHeightTop} style={{ left: POSITION, top: P50 }} />
+        <Input name="height-top" value={heightTop} setValue={(v) => set(v, 0)} style={{ left: POSITION, top: P50 }} />
       </Panel>
-      <Panel filled width={width} height={realBottomHeight} scale={scale}>
-        <Input name="height-bottom" value={heightBottom} setValue={setHeightBottom} style={{ left: POSITION, top: P50 }} />
+      <Panel filled width={width} height={heightBottom} scale={scale}>
+        <Input name="height-bottom" value={heightBottom} setValue={(v) => set(v, 1)} style={{ left: POSITION, top: P50 }} />
       </Panel>
       <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
         <Opening openingInputName="window-opening" />
       </div>
-      <Input name="height" yellow value={height} setValue={setHeight} style={{ right: POSITION, top: P50 }} />
+      <Input name="height" yellow value={height} setValue={setTotal} style={{ right: POSITION, top: P50 }} />
     </div>
   );
 };
