@@ -379,7 +379,7 @@ export const RoduPoolKlaas = () => {
     <div style={{ position: "relative" }}>
       <Panel width={width} height={realTopHeight} scale={scale}>
         <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
-        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ bottom: POSITION, top: P50 }} />
+        <Input name="height-top" value={heightTop} label="Korgus" setValue={setHeightTop} style={{ left: POSITION, top: P50 }} />
       </Panel>
       <Panel filled width={width} height={realBottomHeight} scale={scale}>
         <Input name="height-bottom" value={heightBottom} label="Korgus" setValue={setHeightBottom} style={{ left: POSITION, top: P50 }} />
