@@ -199,11 +199,14 @@ const useScale = (heights: number[], widths: number[]) => {
 
 const useMultipleValues = (initialValues: number[]) => {
   const [values, setValues] = useState(initialValues);
-  const [lastEdit, setLastEdit] = useState<number | null>(null);
+  const [lastEdit, setLastEdit] = useState<Record<number, Date>>(Object.fromEntries(initialValues.map((_, i) => [i, new Date()])));
+
   const set = (newValue: number, index: number) => {
-    const oldestEditId = values.findIndex((_, i) => i !== index && i !== lastEdit);
-    let lastEditId = values.findIndex((_, i) => i !== index && i !== oldestEditId);
-    if (lastEditId === -1) lastEditId = oldestEditId;
+    // Getting oldest edited value, this one will be changed
+    const oldestEditId: number = Object.entries(lastEdit).reduce((a, [key, value]) => {
+      if (value < lastEdit[a]) return Number(key);
+      return a;
+    }, 0);
 
     const oldValue = values[index];
     const newOldestValue = values[oldestEditId] - (newValue - oldValue);
@@ -215,7 +218,7 @@ const useMultipleValues = (initialValues: number[]) => {
         return val;
       })
     );
-    setLastEdit(index);
+    setLastEdit({ ...lastEdit, [index]: new Date() });
   };
   const setTotal = (newTotal: number) => {
     const getPercentage = (width: number) => (width && total ? width / total : 1 / values.length);
