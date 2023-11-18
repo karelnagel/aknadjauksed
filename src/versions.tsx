@@ -88,7 +88,7 @@ const Opening = ({ openingInputName }: { openingInputName: string }) => {
 };
 
 const BORDER_WIDTH = 22;
-const POSITION = `calc(100% + ${BORDER_WIDTH}px + 7px)`;
+const POSITION = `calc(100% + 7px)`;
 const POSITION_WITHOUT_BORDER = `calc(100% + 7px)`;
 const P50 = "50%";
 const Panel = ({
