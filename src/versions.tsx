@@ -343,7 +343,7 @@ export const AknadMolemalPool = () => {
   const scale = useScale([Math.max(heightDoor, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
   return (
-    <div style={{ position: "relative", display: "flex" }}>
+    <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <Panel openingInputName="opening-left" width={widthLeft} height={heightLeft} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: POSITION, left: P50 }} />
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ right: POSITION, top: P50 }} />
@@ -474,7 +474,7 @@ export const ParemalAknaga = () => {
   const realWindowWidth = (windowWidth / (windowWidth + doorWidth)) * width;
   const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
   return (
-    <div style={{ position: "relative", display: "flex" }}>
+    <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <div style={{ position: "relative" }}>
         <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
           <Input name="door-width" value={doorWidth} label="Ukse laius" setValue={setDoorWidth} style={{ top: POSITION_WITHOUT_BORDER, left: P50 }} />
@@ -517,7 +517,7 @@ export const RoduPoolKlaasAknadMolemalPool = () => {
   const scale = useScale([Math.max(heightDoor + heightDoorBottom, heightLeft, heightRight)], [widthLeft, doorWidth, widthRight]);
 
   return (
-    <div style={{ position: "relative", display: "flex" }}>
+    <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <Panel openingInputName="opening-left" width={widthLeft} height={heightLeft} scale={scale}>
         <Input name="width-left" value={widthLeft} label="Laius" setValue={setWidthLeft} style={{ bottom: POSITION, left: P50 }} />
         <Input name="height-left" max={heightDoor} value={heightLeft} label="Korgus" setValue={setHeightLeft} style={{ right: POSITION, top: P50 }} />
@@ -564,7 +564,7 @@ export const RoduPoolKlaasAknaga = () => {
   const realDoorWidth = (doorWidth / (windowWidth + doorWidth)) * width;
 
   return (
-    <div style={{ position: "relative", display: "flex" }}>
+    <div style={{ position: "relative", display: "flex", alignItems: "start" }}>
       <div style={{ position: "relative" }}>
         <Panel width={realDoorWidth} height={doorHeight} scale={scale}>
           <Input name="door-height" value={doorHeight} label="Ukse pikkus" setValue={setDoorHeight} style={{ right: POSITION, top: P50 }} />
