@@ -202,15 +202,15 @@ const useMultipleValues = (initialValues: number[]) => {
   const [lastEdit, setLastEdit] = useState<Record<number, Date>>(Object.fromEntries(initialValues.map((_, i) => [i, new Date()])));
 
   const set = (newValue: number, index: number) => {
-    // Getting oldest edited value that will be changed
-    // It wont be the one that is being changed
-    // It will be the one that was edited the longest time ago
-    const oldestEditId: number = Object.entries(lastEdit)
+    let oldestEditId: number | null = null;
+    Object.entries(lastEdit)
       .filter(([id]) => Number(id) !== index)
-      .reduce((acc, [id, date]) => (date < lastEdit[acc] ? Number(id) : acc), 0);
+      .forEach(([id, date]) => {
+        if (oldestEditId === null || date < lastEdit[oldestEditId]) oldestEditId = Number(id);
+      });
 
-    const oldValue = values[index];
-    const newOldestValue = values[oldestEditId] - (newValue - oldValue);
+    const diff = newValue - values[index];
+    const newOldestValue = values[oldestEditId!] - diff;
 
     setValues(
       values.map((val, i) => {
