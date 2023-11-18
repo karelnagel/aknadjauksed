@@ -110,18 +110,19 @@ const Panel = ({
   const color = colors[colorOutside as keyof typeof colors] || colorOutside || "white";
 
   return (
-    <div
-      style={{
-        border: `${BORDER_WIDTH}px solid ${color}`,
-        background: filled ? color : "#adecff",
-        width: width > 0 ? width * scale : 0,
-        height: height > 0 ? height * scale : 0,
-        position: "relative",
-        textAlign: "center",
-        transitionDuration: "1s",
-      }}
-    >
-      {openingInputName && <Opening openingInputName={openingInputName} />}
+    <div style={{ position: "relative" }}>
+      <div
+        style={{
+          border: `${BORDER_WIDTH}px solid ${color}`,
+          background: filled ? color : "#adecff",
+          width: width > 0 ? width * scale : 0,
+          height: height > 0 ? height * scale : 0,
+          textAlign: "center",
+          transitionDuration: "1s",
+        }}
+      >
+        {openingInputName && <Opening openingInputName={openingInputName} />}
+      </div>
       {children}
     </div>
   );
@@ -259,7 +260,7 @@ export const KaheOsaline = () => {
         <Input name="width-right" value={widthRight} label="Laius" setValue={setWidth2} style={{ bottom: POSITION, left: P50 }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: POSITION, top: P50 }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: POSITION, left: P50 }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: POSITION_WITHOUT_BORDER, left: P50 }} />
     </div>
   );
 };
@@ -327,7 +328,7 @@ export const NeljaOsaline = () => {
         <Input name="width-fourth" value={widthFourth} label="Laius" setValue={setWidthFourth} style={{ bottom: POSITION, left: P50 }} />
         <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ left: POSITION, top: P50 }} />
       </Panel>
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: POSITION, left: P50 }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ top: POSITION_WITHOUT_BORDER, left: P50 }} />
     </div>
   );
 };
@@ -429,7 +430,7 @@ export const UksPlussKaks = () => {
         </Panel>
       </div>
       <Input name="height" value={height} label="Korgus" setValue={setHeight} style={{ right: POSITION, top: P50 }} />
-      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: POSITION, left: P50 }} />
+      <Input name="width" value={width} label="Laius" setValue={setWidth} style={{ bottom: POSITION_WITHOUT_BORDER, left: P50 }} />
     </div>
   );
 };
